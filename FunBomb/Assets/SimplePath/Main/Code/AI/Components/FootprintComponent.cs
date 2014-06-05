@@ -77,7 +77,7 @@ public class FootprintComponent : MonoBehaviour
 				                                );//Mathf.Clamp(testPos.x, bounds.min.x, bounds.max.x);
 				ConvertUtils.SetVerticalValue(ref testPos,
 				                              Mathf.Clamp(ConvertUtils.VerticalValue(testPos),  ConvertUtils.VerticalValue(bounds.min), ConvertUtils.VerticalValue(bounds.max))
-				                              );//Mathf.Clamp(testPos.z, bounds.min.z, bounds.max.z);
+				                              );//Mathf.Clamp(testPos. z, bounds.min. z, bounds.max. z);
 				if ( grid.IsInBounds(testPos) )
 				{
 					int obstructedCellIndex = grid.GetCellIndex(testPos);
@@ -106,8 +106,8 @@ public class FootprintComponent : MonoBehaviour
 		// Create a new cell pool, if the collider shape has changed.
 		Bounds bounds = collider.bounds;
 		bounds.Expand(m_scale);
-		int maxNumObstructedRows = (int)( bounds.size.z / grid.CellSize ) + 2;
-		int maxNumObstructedCols = (int)( bounds.size.x / grid.CellSize ) + 2;
+		int maxNumObstructedRows = (int)( ConvertUtils.VerticalValue( bounds.size ) / grid.CellSize ) + 2;
+		int maxNumObstructedCols = (int)( ConvertUtils.HorizontalValue( bounds.size ) / grid.CellSize ) + 2;
 		int maxNumObstructedCells = maxNumObstructedRows * maxNumObstructedCols;
 		if ( m_obstructedCellPool == null || (maxNumObstructedCells != m_obstructedCellPool.Length) )
 		{

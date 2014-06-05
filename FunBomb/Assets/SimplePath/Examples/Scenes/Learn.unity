@@ -981,6 +981,10 @@ Prefab:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 605a205e3f1c4e94a924e1540ceca650, type: 2}
+      propertyPath: m_usePathSmoothing
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 605a205e3f1c4e94a924e1540ceca650, type: 2}
   m_RootGameObject: {fileID: 1366495904}
