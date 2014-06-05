@@ -85,7 +85,16 @@ namespace SimpleAI
 		public static float VerticalValue(Vector3 vec){
 			return vec.z;
 		}
-		
+		public static float ThirdValue(Vector3 vec){
+			return vec.y;//Except Horizon &  Vertical Value
+		}
+
+		public static Vector3 PosByHV(Vector3 HorizonVec, Vector3 VerticalVec, Vector3 thridValueVec){
+			float Horizon = HorizontalValue(HorizonVec);
+			float Vertical = VerticalValue(VerticalVec);
+			float thirdValue = ThirdValue(thridValueVec);
+			return PosByHV(Horizon, Vertical, thirdValue);
+		}
 		public static Vector3 PosByHV(float Horizon, float Vertical, float thirdValue = 0.0f){
 			return new Vector3(Horizon, thirdValue, Vertical);
 		}
@@ -99,9 +108,13 @@ namespace SimpleAI
 		public static void AccumulateV(ref Vector3 origin, float Vertical){
 			Accumulate (ref origin, 0, Vertical);
 		}
-		public static float ThirdValue(Vector3 vec){
-			return vec.y;//Except Horizon &  Vertical Value
+		public static void SetHorizontalValue(ref Vector3 origin, float Horizon){
+			origin.x = Horizon;
 		}
+		public static void SetVerticalValue(ref Vector3 origin, float Vertical){
+			origin.z = Vertical;
+		}
+
 	}
 }
 

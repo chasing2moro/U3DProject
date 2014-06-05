@@ -44,21 +44,21 @@ public class FootprintComponent : MonoBehaviour
 		
 		// lowerLeftPos Represents the center of the first cell that is covered, in the lower left corner. We march right and up
 		// from this cell.
-		Vector3 upperLeftPos = new Vector3( bounds.min.x, grid.Origin.y, bounds.max.z );
-		Vector3 upperRightPos = new Vector3( bounds.max.x, grid.Origin.y, bounds.max.z );
-		Vector3 lowerLeftPos = new Vector3( bounds.min.x, grid.Origin.y, bounds.min.z );
-		Vector3 lowerRightPos = new Vector3( bounds.max.x, grid.Origin.y, bounds.min.z );
+		Vector3 upperLeftPos = ConvertUtils.PosByHV(bounds.min,  bounds.max, grid.Origin);//new Vector3( bounds.min.x, grid.Origin.y, bounds.max. z );
+		Vector3 upperRightPos = ConvertUtils.PosByHV(bounds.max, bounds.max, grid.Origin);//new Vector3( bounds.max.x, grid.Origin.y, bounds.max. z );
+		Vector3 lowerLeftPos = ConvertUtils.PosByHV(bounds.min, bounds.min, grid.Origin);//new Vector3( bounds.min.x, grid.Origin.y, bounds.min. z );
+		Vector3 lowerRightPos = ConvertUtils.PosByHV(bounds.max, bounds.min, grid.Origin);//new Vector3( bounds.max.x, grid.Origin.y, bounds.min. z );
 		Vector3 horizDir = (upperRightPos - upperLeftPos).normalized;
 		Vector3 vertDir = (upperLeftPos - lowerLeftPos).normalized;
-		float horizLength = bounds.size.x;
-		float vertLength = bounds.size.z;
+		float horizLength = ConvertUtils.HorizontalValue( bounds.size );
+		float vertLength = ConvertUtils.VerticalValue( bounds.size );
 		
 		if ( m_showBoundingBox )
 		{
-			Debug.DrawLine(upperLeftPos, upperRightPos);
-			Debug.DrawLine(upperRightPos, lowerRightPos);
-			Debug.DrawLine(lowerRightPos, lowerLeftPos);
-			Debug.DrawLine(lowerLeftPos, upperLeftPos);
+			Debug.DrawLine(upperLeftPos, upperRightPos, Color.red);
+			Debug.DrawLine(upperRightPos, lowerRightPos, Color.red);
+			Debug.DrawLine(lowerRightPos, lowerLeftPos, Color.red);
+			Debug.DrawLine(lowerLeftPos, upperLeftPos, Color.red);
 		}
 		
 		UpdateObstructedCellPool(grid);
@@ -72,8 +72,12 @@ public class FootprintComponent : MonoBehaviour
 			{
 				float currentHorizLength = colCount * grid.CellSize;
 				Vector3 testPos = lowerLeftPos + horizDir * currentHorizLength + vertDir * currentVertLength;
-				testPos.x = Mathf.Clamp(testPos.x, bounds.min.x, bounds.max.x);
-				testPos.z = Mathf.Clamp(testPos.z, bounds.min.z, bounds.max.z);
+				ConvertUtils.SetHorizontalValue( ref testPos, 
+				                                Mathf.Clamp(ConvertUtils.HorizontalValue(testPos),  ConvertUtils.HorizontalValue(bounds.min), ConvertUtils.HorizontalValue(bounds.max))
+				                                );//Mathf.Clamp(testPos.x, bounds.min.x, bounds.max.x);
+				ConvertUtils.SetVerticalValue(ref testPos,
+				                              Mathf.Clamp(ConvertUtils.VerticalValue(testPos),  ConvertUtils.VerticalValue(bounds.min), ConvertUtils.VerticalValue(bounds.max))
+				                              );//Mathf.Clamp(testPos.z, bounds.min.z, bounds.max.z);
 				if ( grid.IsInBounds(testPos) )
 				{
 					int obstructedCellIndex = grid.GetCellIndex(testPos);
