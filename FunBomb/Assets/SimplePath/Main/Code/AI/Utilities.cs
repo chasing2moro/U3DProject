@@ -1,3 +1,4 @@
+#define UseIn2D
 #region Copyright
 // ******************************************************************************************
 //
@@ -83,10 +84,18 @@ namespace SimpleAI
 		}
 		
 		public static float VerticalValue(Vector3 vec){
+#if UseIn2D
+			return vec.y;
+#else
 			return vec.z;
+#endif
 		}
 		public static float ThirdValue(Vector3 vec){
-			return vec.y;//Except Horizon &  Vertical Value
+			#if UseIn2D
+			return vec.z;//Except Horizon &  Vertical Value
+			#else
+			return vec.y;
+			#endif
 		}
 
 		public static Vector3 PosByHV(Vector3 HorizonVec, Vector3 VerticalVec, Vector3 thridValueVec){
@@ -96,11 +105,19 @@ namespace SimpleAI
 			return PosByHV(Horizon, Vertical, thirdValue);
 		}
 		public static Vector3 PosByHV(float Horizon, float Vertical, float thirdValue = 0.0f){
+#if UseIn2D
+			return new Vector3(Horizon, Vertical, thirdValue);
+#else
 			return new Vector3(Horizon, thirdValue, Vertical);
+#endif
 		}
 		public static void Accumulate(ref Vector3 origin, float Horizon, float Vertical){
 			origin.x += Horizon;
+#if UseIn2D
+			origin.y += Vertical;
+#else
 			origin.z += Vertical;
+#endif
 		}
 		public static void AccumulateH(ref Vector3 origin, float Horizon){
 			Accumulate (ref origin, Horizon, 0);
@@ -112,7 +129,11 @@ namespace SimpleAI
 			origin.x = Horizon;
 		}
 		public static void SetVerticalValue(ref Vector3 origin, float Vertical){
+#if UseIn2D
+			origin.y = Vertical;
+#else
 			origin.z = Vertical;
+#endif
 		}
 
 	}

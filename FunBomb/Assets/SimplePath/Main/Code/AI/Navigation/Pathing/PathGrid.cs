@@ -78,6 +78,7 @@ namespace SimpleAI.Navigation
 		
 		public float GetHCost(int startIndex, int goalIndex)
 	    {
+#if true
 	        Vector3 startPos = GetPathNodePos(startIndex);
 	        Vector3 goalPos = GetPathNodePos(goalIndex);
 			float heuristicWeight = 2.0f;
@@ -85,6 +86,9 @@ namespace SimpleAI.Navigation
 			// Give extra cost to height difference
 			cost = cost + Mathf.Abs(goalPos.y - startPos.y) * 1.0f;
 	        return cost;
+#else
+			return 0;
+#endif
 	    }
 	
 	    public bool IsNodeBlocked(int index)

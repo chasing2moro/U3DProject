@@ -46,7 +46,7 @@ public class Interaction_Wander : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if ( m_bNavRequestCompleted )
+		if (  m_bNavRequestCompleted )
 		{
 			Vector3 destPos = ChooseRandomDestination();
 			if ( m_navigationAgent.MoveToPosition(destPos, m_replanInterval) )

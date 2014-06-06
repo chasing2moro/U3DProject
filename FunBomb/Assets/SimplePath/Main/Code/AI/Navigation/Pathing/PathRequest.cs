@@ -91,7 +91,7 @@ namespace SimpleAI.Navigation
         private int                         m_priority;
         private PathPlanParams              m_pathPlanParams;
         private Pool<PathPlanner>.Node      m_pathPlanner;
-        private float                       m_replanTimeRemaining;      // The number of seconds that must elapse before we re-plan this path request.
+        public float                       m_replanTimeRemaining;      // The number of seconds that must elapse before we re-plan this path request.
         private IPathAgent                  m_agent;
         #endregion
 

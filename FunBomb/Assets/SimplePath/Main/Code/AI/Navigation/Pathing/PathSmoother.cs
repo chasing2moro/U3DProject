@@ -86,10 +86,10 @@ namespace SimpleAI.Navigation
 		
 		static float TriArea2(Vector3 a, Vector3 b, Vector3 c)
 		{
-			float ax = b.x - a.x;
-			float az = b.z - a.z;
-			float bx = c.x - a.x;
-			float bz = c.z - a.z;
+			float ax = ConvertUtils.HorizontalValue( b ) - ConvertUtils.HorizontalValue ( a );
+			float az = ConvertUtils.VerticalValue(  b ) - ConvertUtils.VerticalValue( a );
+			float bx = ConvertUtils.HorizontalValue( c ) -  ConvertUtils.HorizontalValue( a );
+			float bz =  ConvertUtils.VerticalValue( c ) -  ConvertUtils.VerticalValue( a );
 			return bx*az - ax*bz;
 		}
 		
