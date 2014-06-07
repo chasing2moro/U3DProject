@@ -141,11 +141,13 @@ public class SteeringAgentComponent : MonoBehaviour
 	{
 		Vector3 targetOffset = target - position;
 		float distance = targetOffset.magnitude;
+
 		float rampedSpeed = m_maxSpeed * (distance / m_slowingDistance);
 		float minSpeed = m_maxSpeed / 4.0f;
 		float clippedSpeed = Mathf.Clamp(rampedSpeed, minSpeed, m_maxSpeed);
+
 		Vector3 accelerationDir = seekPos - position;
-		accelerationDir.y = 0.0f;
+		SimpleAI.ConvertUtils.SetThirdValue(ref accelerationDir, 0.0f);
 		accelerationDir.Normalize();
 		Vector3 gravitationalForce = -Vector3.up * m_gravitationalAccelerationRate * rigidbody.mass;
 		Vector3 acceleration = m_accelerationRate * accelerationDir + gravitationalForce;
