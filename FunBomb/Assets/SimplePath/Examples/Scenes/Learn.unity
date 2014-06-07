@@ -383,13 +383,13 @@ MonoBehaviour:
   m_arrivalDistance: .5
   m_maxSpeed: 4
   m_lookAheadDistance: .5
-  m_slowingDistance: 0
+  m_slowingDistance: 1
   m_accelerationRate: 20
   m_gravitationalAccelerationRate: 0
   m_debugPathColor: {r: 1, g: .921568632, b: .0156862754, a: 1}
   m_debugGoalColor: {r: 1, g: 0, b: 0, a: 1}
   m_debugShowPath: 1
-  m_debugShowVelocity: 0
+  m_debugShowVelocity: 1
 --- !u!114 &1366495908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -618,7 +618,7 @@ Transform:
   m_PrefabInternal: {fileID: 2095725782}
   m_GameObject: {fileID: 1434756772}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: .172742367, y: -.138194084, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 349215317}
@@ -776,7 +776,7 @@ Prefab:
       objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
     - target: {fileID: 11400002, guid: 605a205e3f1c4e94a924e1540ceca650, type: 2}
       propertyPath: m_slowingDistance
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 605a205e3f1c4e94a924e1540ceca650, type: 2}
       propertyPath: m_CastShadows
@@ -789,6 +789,18 @@ Prefab:
     - target: {fileID: 11400002, guid: 605a205e3f1c4e94a924e1540ceca650, type: 2}
       propertyPath: m_accelerationRate
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 605a205e3f1c4e94a924e1540ceca650, type: 2}
+      propertyPath: m_debugShowPath
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 605a205e3f1c4e94a924e1540ceca650, type: 2}
+      propertyPath: m_debugShowPath
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 605a205e3f1c4e94a924e1540ceca650, type: 2}
+      propertyPath: m_debugShowVelocity
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 605a205e3f1c4e94a924e1540ceca650, type: 2}
@@ -891,11 +903,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400004, guid: 8e8d8401a28242b43b1ca4c5da3b354a, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: .172742367
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 8e8d8401a28242b43b1ca4c5da3b354a, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -.138194084
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 8e8d8401a28242b43b1ca4c5da3b354a, type: 2}
       propertyPath: m_LocalPosition.z
