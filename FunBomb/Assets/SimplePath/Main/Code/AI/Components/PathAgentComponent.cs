@@ -60,7 +60,7 @@ public class PathAgentComponent : MonoBehaviour, IPathAgent
 	}
 
 	void Start(){
-		Debug.Log("PlayerPos:" + transform.position);
+		//Debug.Log("PlayerPos:" + transform.position);
 	}
 	
 	void OnDrawGizmos()

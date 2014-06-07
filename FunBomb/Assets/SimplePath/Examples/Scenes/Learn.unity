@@ -367,7 +367,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d3b05da18e2a141849f1485fed5c76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_usePathSmoothing: 0
 --- !u!114 &1366495907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -385,7 +384,6 @@ MonoBehaviour:
   m_lookAheadDistance: .5
   m_slowingDistance: 1
   m_accelerationRate: 20
-  m_gravitationalAccelerationRate: 0
   m_debugPathColor: {r: 1, g: .921568632, b: .0156862754, a: 1}
   m_debugGoalColor: {r: 1, g: 0, b: 0, a: 1}
   m_debugShowPath: 1
@@ -801,6 +799,10 @@ Prefab:
     - target: {fileID: 11400002, guid: 605a205e3f1c4e94a924e1540ceca650, type: 2}
       propertyPath: m_debugShowVelocity
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 605a205e3f1c4e94a924e1540ceca650, type: 2}
+      propertyPath: m_arrivalDistance
+      value: .5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 605a205e3f1c4e94a924e1540ceca650, type: 2}

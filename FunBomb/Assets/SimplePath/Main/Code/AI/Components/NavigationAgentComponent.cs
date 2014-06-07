@@ -18,7 +18,9 @@ using SimpleAI.Steering;
 public class NavigationAgentComponent : MonoBehaviour 
 {	
 	#region Unity Editor Fields
+#if PathSmoothing 
 	public bool								m_usePathSmoothing = true;
+#endif
 	#endregion
 	
 	#region Fields
@@ -70,6 +72,7 @@ public class NavigationAgentComponent : MonoBehaviour
 		Vector3[] roughPath = request.GetSolutionPath(m_pathAgent.PathManager.PathTerrain);
 		Vector3[] steeringPath = roughPath;
 
+#if PathSmoothing 
 		if ( m_usePathSmoothing )
 		{
 			// Smooth the path
@@ -78,6 +81,7 @@ public class NavigationAgentComponent : MonoBehaviour
 			m_pathAgent.PathManager.PathTerrain.ComputePortalsForPathSmoothing( roughPath, out aLeftPortalEndPts, out aRightPortalEndPts );
 			steeringPath = PathSmoother.Smooth(roughPath, request.GetStartPos(), request.GetGoalPos(), aLeftPortalEndPts, aRightPortalEndPts);
 		}
+#endif
 
 		// Begin steering along this path
 		m_steeringAgent.SteerAlongPath( steeringPath, m_pathAgent.PathManager.PathTerrain );
