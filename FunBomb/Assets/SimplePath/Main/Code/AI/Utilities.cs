@@ -1,4 +1,4 @@
-#define UseIn2D
+//#define UseIn2D
 #region Copyright
 // ******************************************************************************************
 //
@@ -134,6 +134,13 @@ namespace SimpleAI
 #else
 			origin.z = Vertical;
 #endif
+		}
+		public static void SetThirdValue(ref Vector3 origin, float thirdValue){
+			#if UseIn2D
+			origin.z = thirdValue;
+			#else
+			origin.y = thirdValue;
+			#endif
 		}
 
 	}

@@ -56,7 +56,7 @@ public class SteeringAgentComponent : MonoBehaviour
 	        Vector3 seekPos = m_path.MapPathDistanceToPoint(futureDist);
 			
 			// Set the height of the seek pos, based on the terrain.
-			seekPos.y = m_pathTerrain.GetTerrainHeight(seekPos);
+			SimpleAI.ConvertUtils.SetThirdValue(ref seekPos, m_pathTerrain.GetTerrainHeight(seekPos));
 			
 			// Determine the new velocity
 			Vector3 newVelocity = Vector3.zero;
