@@ -114,6 +114,7 @@ namespace SimpleAI.Planning
             OpenNode(m_startNode);
 
             m_planStatus = ePlanStatus.kPlanning;
+			UnityEngine.Debug.Log("startNodeIndex:" + startNodeIndex + " /goalNodeIndex:" + goalNodeIndex);
         }
 
         /// <summary>

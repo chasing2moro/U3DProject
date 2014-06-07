@@ -60,10 +60,12 @@ public class SteeringAgentComponent : MonoBehaviour
 			
 			// Determine the new velocity
 			Vector3 newVelocity = Vector3.zero;
+
 			Vector3 destPos = ( m_path.Points[m_path.Points.Length - 1] );
-			destPos.y = m_pathTerrain.GetTerrainHeight(destPos);
+			SimpleAI.ConvertUtils.SetThirdValue(ref destPos, m_pathTerrain.GetTerrainHeight(destPos));
+
 			Vector3 currentFloorPosition = transform.position;
-			currentFloorPosition.y = m_pathTerrain.GetTerrainHeight(currentFloorPosition);
+			SimpleAI.ConvertUtils.SetThirdValue(ref currentFloorPosition, m_pathTerrain.GetTerrainHeight(currentFloorPosition));
 			float distToDestPos = Vector3.Distance(currentFloorPosition, destPos);
 			if ( distToDestPos <= m_arrivalDistance )
 			{

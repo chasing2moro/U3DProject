@@ -58,6 +58,10 @@ public class PathAgentComponent : MonoBehaviour, IPathAgent
 			m_bInitialized = true;
 		}
 	}
+
+	void Start(){
+		Debug.Log("PlayerPos:" + transform.position);
+	}
 	
 	void OnDrawGizmos()
 	{
@@ -125,7 +129,8 @@ public class PathAgentComponent : MonoBehaviour, IPathAgent
 	
 	public void OnPathAgentRequestSucceeded(IPathRequestQuery request)
 	{
-		SendMessageUpwards("OnPathRequestSucceeded", request, SendMessageOptions.DontRequireReceiver);
+#warning temp
+		//SendMessageUpwards("OnPathRequestSucceeded", request, SendMessageOptions.DontRequireReceiver);
 	}
 	
 	public void OnPathAgentRequestFailed()
