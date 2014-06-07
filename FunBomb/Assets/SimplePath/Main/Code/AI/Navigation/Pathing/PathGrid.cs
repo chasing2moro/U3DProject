@@ -129,10 +129,12 @@ namespace SimpleAI.Navigation
 			// Find a position that is within the grid, at the same height as the grid.
 			float padding = m_cellSize / 4.0f;
 			Bounds gridBounds = GetGridBounds();
+			//Debug.Log("position1:" + position);
+			//Debug.Log(" " + ConvertUtils.VerticalValue( position ) + " /" + (ConvertUtils.VerticalValue( gridBounds.min ) + padding )+ " /" + (ConvertUtils.VerticalValue( gridBounds.max ) - padding));
 			position = ConvertUtils.PosByHV(Mathf.Clamp(ConvertUtils.HorizontalValue( position ), ConvertUtils.HorizontalValue( gridBounds.min ) + padding, ConvertUtils.HorizontalValue( gridBounds.max ) - padding),
 			                                Mathf.Clamp(ConvertUtils.VerticalValue( position ),   ConvertUtils.VerticalValue( gridBounds.min ) + padding,   ConvertUtils.VerticalValue( gridBounds.max ) - padding),
-			                     			Origin.y);
-			
+			                     			ConvertUtils.ThirdValue( Origin ));
+			//Debug.Log("position2:" + position);
 			// If this position is blocked, then look at all of the neighbors of this cell, and see if one of those cells is
 			// unblocked. If one of those neighbors is unblocked, then we return the position of that neighbor, to ensure that 
 			// the agent is always pathing to and from valid positions.

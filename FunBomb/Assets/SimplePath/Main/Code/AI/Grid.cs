@@ -190,14 +190,14 @@ namespace SimpleAI
 	    {
 	        Vector3 cellCenterPos = GetCellPosition(index);
 			ConvertUtils.Accumulate (ref cellCenterPos, m_cellSize / 2.0f, m_cellSize / 2.0f);
-	        Bounds cellBounds = new Bounds(cellCenterPos, new Vector3(m_cellSize, kDepth, m_cellSize));
+			Bounds cellBounds = new Bounds(cellCenterPos, ConvertUtils.PosByHV(m_cellSize, m_cellSize,  kDepth));//new Vector3(m_cellSize, kDepth, m_cellSize));
 	        return cellBounds;
 	    }
 		
 		public Bounds GetGridBounds()
 		{
 			Vector3 gridCenter = Origin + (Width / 2.0f) * kXAxis + (Height / 2.0f) * kZAxis;
-			Bounds gridBounds = new Bounds(gridCenter, new Vector3(Width, kDepth, Height));
+			Bounds gridBounds = new Bounds(gridCenter, ConvertUtils.PosByHV(Width, Height,  kDepth));// new Vector3(Width, kDepth, Height));
 			return gridBounds;
 		}
 		

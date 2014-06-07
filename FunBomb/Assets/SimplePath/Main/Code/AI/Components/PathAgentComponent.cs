@@ -129,8 +129,7 @@ public class PathAgentComponent : MonoBehaviour, IPathAgent
 	
 	public void OnPathAgentRequestSucceeded(IPathRequestQuery request)
 	{
-#warning temp
-		//SendMessageUpwards("OnPathRequestSucceeded", request, SendMessageOptions.DontRequireReceiver);
+		SendMessageUpwards("OnPathRequestSucceeded", request, SendMessageOptions.DontRequireReceiver);
 	}
 	
 	public void OnPathAgentRequestFailed()
