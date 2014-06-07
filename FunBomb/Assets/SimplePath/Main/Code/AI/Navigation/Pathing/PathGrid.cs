@@ -120,7 +120,7 @@ namespace SimpleAI.Navigation
 		{
 			GridPortalComputer.ComputePortals(roughPath, this, out aLeftPortalEndPts, out aRightPortalEndPts);
 		}
-#error This function is Wrong
+//#error This function is Wrong
 		public Vector3 GetValidPathFloorPos(Vector3 position)
 		{
 			// Save this value off, in case we need to use it to search for a valid location further along in this function.

@@ -176,7 +176,7 @@ public class PathManagerComponent : MonoBehaviour
 		UnityEngine.Debug.Log("startPos1:" + pathPlanParams.StartPos);
 		// Clamp the start and goal positions within the terrain space, and make sure they are on the floor.
 		pathPlanParams.UpdateStartAndGoalPos( m_terrain.GetValidPathFloorPos(pathPlanParams.StartPos) );
-		
+		UnityEngine.Debug.Log("startPos2:" + pathPlanParams.StartPos);
 		// Make sure this agent does not have an active request
 		if ( m_activeRequests.Count	 > 0 )
 		{
@@ -211,7 +211,7 @@ public class PathManagerComponent : MonoBehaviour
 
         // Start the request
         int startNodeIndex = m_terrain.GetPathNodeIndex(pathPlanParams.StartPos);
-		UnityEngine.Debug.Log("startPos2:" + pathPlanParams.StartPos);
+
         int goalNodeIndex = m_terrain.GetPathNodeIndex(pathPlanParams.GoalPos);
         pathPlanner.Item.StartANewPlan(startNodeIndex, goalNodeIndex);
 
