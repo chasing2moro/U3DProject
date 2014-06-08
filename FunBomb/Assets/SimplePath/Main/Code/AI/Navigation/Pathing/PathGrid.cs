@@ -1,4 +1,4 @@
-﻿#region Copyright
+#region Copyright
 // ******************************************************************************************
 //
 // 							SimplePath, Copyright © 2011, Alex Kring

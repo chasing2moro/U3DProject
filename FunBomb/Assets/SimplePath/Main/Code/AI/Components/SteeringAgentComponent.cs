@@ -6,21 +6,23 @@
 // ******************************************************************************************
 #endregion
 
+
+
 using UnityEngine;
 using System.Collections;
 using SimpleAI.Steering;
 using SimpleAI.Navigation;
 
 [RequireComponent(typeof(Rigidbody))]
-public class SteeringAgentComponent : MonoBehaviour 
+public class SteeringAgentComponent : MonoBehaviour , ISteeringAgent
 {
 	#region Unity Editor Fields
-	public float									m_arrivalDistance = 0.25f;
-	public float									m_maxSpeed = 2.0f;
-	public float									m_lookAheadDistance = 0.50f;
+	public float									m_arrivalDistance = 0.1f;
+//	public float									m_maxSpeed = 2.0f;
+//	public float									m_lookAheadDistance = 0.50f;//cancel 
 	public float									m_slowingDistance = 1.0f;
 	public float									m_accelerationRate = 25.0f;
-	public float									m_gravitationalAccelerationRate = 0.0f;
+//	public float									m_gravitationalAccelerationRate = 0.0f;
 	public Color									m_debugPathColor = Color.yellow;
 	public Color									m_debugGoalColor = Color.red;
 	public bool										m_debugShowPath = true;
@@ -29,8 +31,11 @@ public class SteeringAgentComponent : MonoBehaviour
 	
 	#region Fields
 	private SimpleAI.Steering.PolylinePathway		m_path;
+	private int 									m_path_index;
+	private SimpleAI.Steering.PahtwayStep		    m_pathStep;
+	private Vector3									m_seekPos;
 	private bool									m_bArrived;
-	private IPathTerrain							m_pathTerrain;
+	//private IPathTerrain							m_pathTerrain;
 	#endregion
 	
 	#region MonoBehaviour Functions
@@ -38,7 +43,8 @@ public class SteeringAgentComponent : MonoBehaviour
 	{
 		m_path = null;
 		m_bArrived = false;
-		m_pathTerrain = null;
+		//m_pathTerrain = null;
+		m_pathStep = new PahtwayStep ();
 	}
 	
 	// Update is called once per frame
@@ -50,11 +56,12 @@ public class SteeringAgentComponent : MonoBehaviour
 		}
 		else if ( m_path != null )
 		{
+#if fasle
 			// Compute the seek position (the position we are traveling toward)
 	        float currentDistAlongPath = m_path.MapPointToPathDistance(transform.position);
 	        float futureDist = currentDistAlongPath + m_lookAheadDistance;
 	        Vector3 seekPos = m_path.MapPathDistanceToPoint(futureDist);
-			
+
 			// Set the height of the seek pos, based on the terrain.
 			SimpleAI.ConvertUtils.SetThirdValue(ref seekPos, m_pathTerrain.GetTerrainHeight(seekPos));
 			
@@ -82,6 +89,18 @@ public class SteeringAgentComponent : MonoBehaviour
 			}
 			
 			rigidbody.velocity = newVelocity;
+#else
+			//
+			if(Vector3.Distance(m_seekPos , transform.position) < m_arrivalDistance){
+				if(m_path_index == m_path.PointCount){
+					OnArrived();
+					return;
+				}
+				m_seekPos = m_path.Points[m_path_index++];
+				m_pathStep.SetPos(transform.position, m_seekPos);
+			}
+			transform.position = m_pathStep.VectorByStep(Time.deltaTime * m_accelerationRate);
+			#endif
 		}
 	}
 	
@@ -116,9 +135,12 @@ public class SteeringAgentComponent : MonoBehaviour
 	
 	public void SteerAlongPath(Vector3[] path, IPathTerrain pathTerrain)
 	{
-		m_pathTerrain = pathTerrain;
+		//m_pathTerrain = pathTerrain;
 		m_bArrived = false;
 		m_path = new PolylinePathway(path.Length, path);
+		m_path_index = 0;
+		m_seekPos = m_path.Points[m_path_index];
+		transform.position = m_seekPos;
 	}
 	
 	public void StopSteering()
@@ -136,24 +158,25 @@ public class SteeringAgentComponent : MonoBehaviour
 		m_bArrived = true;
 		SendMessageUpwards("OnSteeringRequestSucceeded", SendMessageOptions.DontRequireReceiver);
 	}
-	
-	private Vector3 ComputeArrivalVelocity(Vector3 seekPos, Vector3 target, Vector3 position, Vector3 currentVelocity)
-	{
-		Vector3 targetOffset = target - position;
-		float distance = targetOffset.magnitude;
+//	
+//	private Vector3 ComputeArrivalVelocity(Vector3 aSeekPos, Vector3 target, Vector3 position, Vector3 currentVelocity)
+//	{
+//		Vector3 targetOffset = target - position;
+//		float distance = targetOffset.magnitude;
+//
+//		float rampedSpeed = m_maxSpeed * (distance / m_slowingDistance);
+//		float minSpeed = m_maxSpeed / 4.0f;
+//		float clippedSpeed = Mathf.Clamp(rampedSpeed, minSpeed, m_maxSpeed);
+//
+//		Vector3 accelerationDir = aSeekPos - position;
+//		SimpleAI.ConvertUtils.SetThirdValue(ref accelerationDir, 0.0f);
+//		accelerationDir.Normalize();
+//		Vector3 gravitationalForce = -Vector3.up * m_gravitationalAccelerationRate * rigidbody.mass;
+//		Vector3 acceleration = m_accelerationRate * accelerationDir + gravitationalForce;
+//		Vector3 newVelocity = currentVelocity + acceleration * Time.deltaTime;
+//		newVelocity = PolylinePathway.TruncateLength(newVelocity, clippedSpeed);
+//		return newVelocity;
+//	}
 
-		float rampedSpeed = m_maxSpeed * (distance / m_slowingDistance);
-		float minSpeed = m_maxSpeed / 4.0f;
-		float clippedSpeed = Mathf.Clamp(rampedSpeed, minSpeed, m_maxSpeed);
 
-		Vector3 accelerationDir = seekPos - position;
-		SimpleAI.ConvertUtils.SetThirdValue(ref accelerationDir, 0.0f);
-		accelerationDir.Normalize();
-		Vector3 gravitationalForce = -Vector3.up * m_gravitationalAccelerationRate * rigidbody.mass;
-		Vector3 acceleration = m_accelerationRate * accelerationDir + gravitationalForce;
-		Vector3 newVelocity = currentVelocity + acceleration * Time.deltaTime;
-		newVelocity = PolylinePathway.TruncateLength(newVelocity, clippedSpeed);
-		return newVelocity;
-	}
-	
 }

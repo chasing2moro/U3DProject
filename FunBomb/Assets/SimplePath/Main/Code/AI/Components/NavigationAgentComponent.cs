@@ -13,8 +13,8 @@ using SimpleAI.Planning;
 using SimpleAI.Steering;
 
 [RequireComponent(typeof(PathAgentComponent))]
-[RequireComponent(typeof(SteeringAgentComponent))]
-[RequireComponent(typeof(Rigidbody))]
+//[RequireComponent(typeof(SteeringAgentComponent))]
+//[RequireComponent(typeof(Rigidbody))]
 public class NavigationAgentComponent : MonoBehaviour 
 {	
 	#region Unity Editor Fields
@@ -24,10 +24,13 @@ public class NavigationAgentComponent : MonoBehaviour
 	#endregion
 	
 	#region Fields
-	private PathAgentComponent 				m_pathAgent;
-	private SteeringAgentComponent 			m_steeringAgent;
+	private PathAgentComponent 		m_pathAgent;
+	private ISteeringAgent 			m_steeringAgent;
+	PathPlanParams m_planParams;
 	#endregion
-	
+
+
+
 	#region Properties
 	public IPathTerrain PathTerrain
 	{
@@ -40,23 +43,43 @@ public class NavigationAgentComponent : MonoBehaviour
 	{
 		// Find a reference to the path and steering agent
 		m_pathAgent = GetComponent<PathAgentComponent>();
-		m_steeringAgent = GetComponent<SteeringAgentComponent>();
+		m_steeringAgent = GetComponent<SteeringAgentComponent2D> () as ISteeringAgent;
+		if(m_steeringAgent == null)
+			m_steeringAgent = GetComponent<SteeringAgentComponent> () as ISteeringAgent;
 	}
 	#endregion
 	
 	#region Movement Requests
-	public bool MoveToPosition(Vector3 targetPosition, float replanInterval)
+	public bool ChangeTargetPos(int index){
+		Vector3 targetPos = PathTerrain.GetPathNodePos (index);
+		return ChangeTargetPos (targetPos);
+	}
+	public bool ChangeTargetPos(Vector3 targetPos){
+		NavTargetPos navTargetPos = new NavTargetPos(targetPos, PathTerrain);
+		if (m_planParams != null) {
+			m_planParams.SetTarget (navTargetPos);
+			return true;
+		}
+		return false;
+	}
+
+	public bool MoveToIndex(int index){
+       Vector3 targetPos = PathTerrain.GetPathNodePos (index);
+	   return MoveToPosition (targetPos);
+	}
+
+	public bool MoveToPosition(Vector3 targetPosition, float replanInterval = 1f)
 	{
 		NavTargetPos navTargetPos = new NavTargetPos(targetPosition, PathTerrain);
-		PathPlanParams planParams = new PathPlanParams(transform.position, navTargetPos, replanInterval);
-		return m_pathAgent.RequestPath(planParams);
+		m_planParams = new PathPlanParams(transform.position, navTargetPos, replanInterval);
+		return m_pathAgent.RequestPath(m_planParams);
 	}
 	
 	public bool MoveToGameObject(GameObject gameObject, float replanInterval)
 	{
 		NavTargetGameObject navTargetGameObject = new NavTargetGameObject(gameObject, PathTerrain);
-		PathPlanParams planParams = new PathPlanParams(transform.position, navTargetGameObject, replanInterval);
-		return m_pathAgent.RequestPath(planParams);
+		m_planParams = new PathPlanParams(transform.position, navTargetGameObject, replanInterval);
+		return m_pathAgent.RequestPath(m_planParams);
 	}
 	
 	public void CancelActiveRequest()

@@ -49,6 +49,10 @@ namespace SimpleAI.Navigation
             m_goalPos = target.GetNavTargetPosition();
             m_replanInterval = replanInterval;
         }
+
+		public void SetTarget(INavTarget target){
+			m_target = target;
+		}
 		
 		/// <summary>
 		///Paths are replanned. When they are replanned, we need to recompute the new start and goal position of the path,

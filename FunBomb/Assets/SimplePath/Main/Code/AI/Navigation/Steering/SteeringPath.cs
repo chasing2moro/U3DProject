@@ -40,6 +40,25 @@ using System.Text;
 
 namespace SimpleAI.Steering
 {
+	public class PahtwayStep{
+		 Vector3 currentPos;
+		 Vector3 recordSrcPos;
+		 Vector3 dstPos;
+		float length;
+		public void SetPos(Vector3 aSrcPos, Vector3 aDstPos){
+			currentPos = aSrcPos;
+			recordSrcPos = aSrcPos;
+			dstPos = aDstPos;
+			length = Vector3.Distance (recordSrcPos, dstPos);
+		}
+		public Vector3	VectorByStep(float step){
+			currentPos += (dstPos - currentPos).normalized * step;
+			if (Vector3.Distance (recordSrcPos, currentPos) > length)
+					currentPos = dstPos;
+			return currentPos;
+		}
+	}
+
     public class Pathway
     {
         // given a distance along the path, convert it to a point on the path
@@ -61,9 +80,9 @@ namespace SimpleAI.Steering
         Vector3 chosen;
         Vector3 segmentNormal;
 
-        float[] lengths;
-        Vector3[] normals;
-        float totalPathLength;
+		float[] lengths = null;
+		Vector3[] normals = null;
+		float totalPathLength = 0;
 		#endregion
 		
 		#region Properties
@@ -105,6 +124,9 @@ namespace SimpleAI.Steering
         {
             // set data members, allocate arrays
             pointCount = _pointCount;
+			points = _points;
+			return;
+#if false
             totalPathLength = 0;
             lengths = new float [pointCount];
             points  = new Vector3 [pointCount];
@@ -137,6 +159,7 @@ namespace SimpleAI.Steering
                     totalPathLength += lengths[i];
                 }
             }
+#endif
         }
 
         // utility methods
@@ -196,11 +219,52 @@ namespace SimpleAI.Steering
             return result;
         }
 
-        // ----------------------------------------------------------------------------
-        // computes distance from a point to a line segment 
-        //
-        // (I considered moving this to the vector library, but its too
-        // tangled up with the internal state of the PolylinePathway instance)
+		public Vector3 MapPathDistanceToPoint(float pathDistance, Vector3 currentPos)
+		{
+			// clip or wrap given path distance
+			float remaining = pathDistance;
+			if (pathDistance < 0) return points[0];
+			if (pathDistance >= totalPathLength) return points [pointCount-1];
+			
+			// step through segments, subtracting off segment lengths until
+			// locating the segment that contains the original pathDistance.
+			// Interpolate along that segment to find 3d point value to return.
+			Vector3 result = Vector3.zero;
+			for (int i = 1; i < pointCount; i++)
+			{
+				segmentLength = lengths[i];
+				if (segmentLength < remaining)
+				{
+					remaining -= segmentLength;
+				}
+				else
+				{
+					Vector3 vec1 = points[i - 1] - currentPos;
+					Vector3 vec2 = points[i] - currentPos;
+					float dot = Vector3.Dot(vec1, vec2);
+					if(dot > 0){
+						result = points[i - 1];
+						if(result == currentPos){
+							Debug.LogError("result == currentPos");
+						}
+					}else if(dot < 0){
+						result = points[i];
+					}else{
+						Debug.LogError("dot = 0, 3 points are perpendicular");
+						result = points[i];
+					}
+
+					break;
+				}
+			}
+			return result;
+		}
+		
+		// ----------------------------------------------------------------------------
+		// computes distance from a point to a line segment 
+		//
+		// (I considered moving this to the vector library, but its too
+		// tangled up with the internal state of the PolylinePathway instance)
 
         public float PointToSegmentDistance (Vector3 point, Vector3 ep0, Vector3 ep1)
         {
