@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Utilities\CameraHelper.cs" />
+     <Compile Include="Assets\Scripts\Utilities\TypeDefine.cs" />
      <Compile Include="Assets\Simple2d\Scripts\BackgroundParallax.cs" />
      <Compile Include="Assets\Simple2d\Scripts\BackgroundPropSpawner.cs" />
      <Compile Include="Assets\Simple2d\Scripts\Bomb.cs" />

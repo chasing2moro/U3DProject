@@ -28,6 +28,16 @@ namespace SimpleAI
 		#endregion
 		
 		#region Properties
+		public int Rows{
+			get{
+				return m_numberOfRows;
+			}
+		}
+		public int Columns{
+			get{
+				return m_numberOfColumns;
+			}
+		}
 		public float Width
 		{
 			get { return ( m_numberOfColumns * m_cellSize ); }

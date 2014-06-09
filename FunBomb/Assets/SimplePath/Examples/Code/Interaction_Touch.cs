@@ -7,11 +7,23 @@ using System.Collections.Generic;
 public class Interaction_Touch : MonoBehaviour
 {
 	private NavigationAgentComponent 		m_navigationAgent;
-	private PathGrid						m_pathGrid;
-	private LinkedList<int> swipeIndexLinkedList = new LinkedList<int> ();
-	private List<int> swipeIndexList;
+	private PathGrid										m_pathGrid;
 
+
+	private Vector2										m_swipeLastRecordVec;
+	private Vector2										m_swipeCurrentVec;
+	private Vector2										m_swipeNextVec;
+	private int													swipeTempColumn;
+	private List<int> 										swipeIndexListRaw;
+	private List<int> 										swipeIndexList;
+	private int													swipeIndexListIndex;
+	private SearchPathType 							searchType = SearchPathType.TapToWalk;
+
+	//Debug show in Scene
 	public bool m_debugShowPath = true;
+
+
+
 	void Awake()
 	{
 		m_navigationAgent = GetComponent<NavigationAgentComponent>();
@@ -22,52 +34,82 @@ public class Interaction_Touch : MonoBehaviour
 	{
 		if ( m_navigationAgent.PathTerrain == null || !(m_navigationAgent.PathTerrain is PathGrid) )
 		{
-			Debug.LogError("Interaction_Wander was built to work with a PathGrid terrain; can't use it on other terrain types.");
+			Debug.LogError("Interaction_Touch was built to work with a PathGrid terrain; can't use it on other terrain types.");
 		}
 		else
 		{
 			m_pathGrid = m_navigationAgent.PathTerrain as PathGrid;
 		}
-		if(m_debugShowPath)
+
 			swipeIndexList = new List<int> ();
+			swipeIndexListRaw = new List<int>();
+			swipeIndexListIndex = 0;
+	
 	}
 	
 	void OnTap(TapGesture gesture) {
+		searchType = SearchPathType.TapToWalk;
+
 		Vector3 interactPos = CameraHelper.ScreenPosToBackgroundPos (gesture.StartPosition);
 		interactPos = m_pathGrid.GetNearestCellCenter (interactPos);
 		m_navigationAgent.MoveToPosition (interactPos, 1);
 	}
 
 	void OnSwipe(SwipeGesture gesture){
-		swipeIndexLinkedList.Clear ();
-		if (m_debugShowPath)
-			swipeIndexList.Clear ();
+		searchType = SearchPathType.SwipeToWalk;
+		swipeIndexList.Clear ();
+		swipeIndexListRaw.Clear();
+
 		foreach (Vector2 item in gesture.VectorsInProgress) {
 			Vector3 bgPos = CameraHelper.ScreenPosToBackgroundPos (item);
 			int index =	m_pathGrid.GetCellIndex(bgPos);
 			if(m_pathGrid.IsBlocked(index))
 				continue;
-			if(!swipeIndexLinkedList.Contains(index))
-				swipeIndexLinkedList.AddLast(index);
-			if (m_debugShowPath){
-				if(!swipeIndexList.Contains(index))
-					swipeIndexList.Add(index);
-			}
+			if(!swipeIndexListRaw.Contains(index))
+				swipeIndexListRaw.Add(index);
 		}
 
-		m_navigationAgent.MoveToIndex (swipeIndexLinkedList.First.Value);
+
+		for (int i = 0; i < swipeIndexListRaw.Count; i++) {
+			if(i == 0){
+				swipeIndexList.Add(swipeIndexListRaw[i]);
+				m_swipeLastRecordVec = new Vector2( m_pathGrid.GetRow(swipeIndexListRaw[i]), m_pathGrid.GetColumn(swipeIndexListRaw[i]) );
+				continue;
+			}
+			if(i == swipeIndexListRaw.Count - 1){
+				swipeIndexList.Add(swipeIndexListRaw[i]);
+				continue;//break
+			}
+			if(i == 1){
+				m_swipeCurrentVec = new Vector2( m_pathGrid.GetRow(swipeIndexListRaw[i]),  m_pathGrid.GetColumn(swipeIndexListRaw[i]) );
+			}else{
+				m_swipeCurrentVec = m_swipeNextVec;
+			}
+			m_swipeNextVec = new Vector2( m_pathGrid.GetRow(swipeIndexListRaw[i + 1]),  m_pathGrid.GetColumn(swipeIndexListRaw[i + 1]) );
+
+			if(Vector2.Dot((m_swipeCurrentVec - m_swipeLastRecordVec).normalized ,  (m_swipeNextVec - m_swipeCurrentVec).normalized) < 0.9f){
+				m_swipeLastRecordVec = new Vector2( m_pathGrid.GetRow(swipeIndexListRaw[i]), m_pathGrid.GetColumn(swipeIndexListRaw[i]) );
+				swipeIndexList.Add(swipeIndexListRaw[i]);
+			}
+
+		}
+		
+		swipeIndexListIndex = 0;
+		m_navigationAgent.MoveToIndex (swipeIndexList[swipeIndexListIndex]);
 	}
 
 	private void OnNavigationRequestSucceeded()
 	{
-		if (swipeIndexLinkedList.Count > 0) {
-			m_navigationAgent.MoveToIndex (swipeIndexLinkedList.First.Value);
-			swipeIndexLinkedList.RemoveFirst ();
+		if (swipeIndexList.Count > 0 &&
+		    ++swipeIndexListIndex <  swipeIndexList.Count && 
+		    searchType == SearchPathType.SwipeToWalk) {
+				m_navigationAgent.MoveToIndex (swipeIndexList[swipeIndexListIndex]);
 		}
 	}
 	
 	void OnDrawGizmos()
 	{
+		//Debug show in Scene
 		if (m_debugShowPath) {
 			if (swipeIndexList != null && swipeIndexList.Count > 0) {
 				Gizmos.color = Color.red;
