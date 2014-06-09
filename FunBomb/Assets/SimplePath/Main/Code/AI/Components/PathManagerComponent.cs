@@ -293,6 +293,7 @@ public class PathManagerComponent : MonoBehaviour
         foreach (PathRequest request in m_completedRequests)
         {
             request.Update(deltaTimeInSeconds);
+			/* 寻路一次成功即可，无需在途中重新寻路
             if (request.IsReadyToReplan())
             {
                 // and replan toward that pos.
@@ -308,6 +309,7 @@ public class PathManagerComponent : MonoBehaviour
                 int goalNodeIndex = m_terrain.GetPathNodeIndex(request.PlanParams.GoalPos);
 				request.PathPlanner.Item.StartANewPlan(startNodeIndex, goalNodeIndex);
             }
+            */
         }
 
         foreach (PathRequest request in removeCompletedRequests)

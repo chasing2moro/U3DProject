@@ -78,7 +78,7 @@ namespace SimpleAI.Navigation
 		
 		public float GetHCost(int startIndex, int goalIndex)
 	    {
-#if true
+#if false
 	        Vector3 startPos = GetPathNodePos(startIndex);
 	        Vector3 goalPos = GetPathNodePos(goalIndex);
 			float heuristicWeight = 2.0f;
