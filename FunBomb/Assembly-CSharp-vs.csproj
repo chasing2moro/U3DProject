@@ -76,6 +76,8 @@
      <Compile Include="Assets\SimplePath\Examples\Code\PatrolNodeComponent.cs" />
      <Compile Include="Assets\SimplePath\Examples\Code\RandomObstacleSpawner.cs" />
      <Compile Include="Assets\SimplePath\Main\Code\AI\BinaryHeap.cs" />
+     <Compile Include="Assets\SimplePath\Main\Code\AI\Components\Custom\PathAgentBatchComponent.cs" />
+     <Compile Include="Assets\SimplePath\Main\Code\AI\Components\Custom\SteeringAgentComponent2D.cs" />
      <Compile Include="Assets\SimplePath\Main\Code\AI\Components\FootprintComponent.cs" />
      <Compile Include="Assets\SimplePath\Main\Code\AI\Components\HeightmapComponent_UnityTerrain.cs" />
      <Compile Include="Assets\SimplePath\Main\Code\AI\Components\NavigationAgentComponent.cs" />
@@ -85,7 +87,6 @@
      <Compile Include="Assets\SimplePath\Main\Code\AI\Components\PathManagerComponent.cs" />
      <Compile Include="Assets\SimplePath\Main\Code\AI\Components\PathTerrainComponent.cs" />
      <Compile Include="Assets\SimplePath\Main\Code\AI\Components\SteeringAgentComponent.cs" />
-     <Compile Include="Assets\SimplePath\Main\Code\AI\Components\SteeringAgentComponent2D.cs" />
      <Compile Include="Assets\SimplePath\Main\Code\AI\Grid.cs" />
      <Compile Include="Assets\SimplePath\Main\Code\AI\Navigation\INavTarget.cs" />
      <Compile Include="Assets\SimplePath\Main\Code\AI\Navigation\Pathing\IPathAgent.cs" />

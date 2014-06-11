@@ -88,11 +88,11 @@ namespace SimpleAI.Navigation
     public class PathRequest : IComparable<PathRequest>, IPathRequestQuery
     {
         #region Fields
-        private int                         m_priority;
-        private PathPlanParams              m_pathPlanParams;
-        private Pool<PathPlanner>.Node      m_pathPlanner;
-        public float                       m_replanTimeRemaining;      // The number of seconds that must elapse before we re-plan this path request.
-        private IPathAgent                  m_agent;
+        private int                        	 					m_priority;
+        private PathPlanParams              		m_pathPlanParams;
+        private Pool<PathPlanner>.Node      	m_pathPlanner;
+        public float                       					m_replanTimeRemaining;      // The number of seconds that must elapse before we re-plan this path request.
+        private IPathAgent                  				m_agent;
         #endregion
 
         #region Properties

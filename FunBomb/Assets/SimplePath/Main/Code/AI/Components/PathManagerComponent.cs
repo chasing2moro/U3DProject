@@ -173,10 +173,10 @@ public class PathManagerComponent : MonoBehaviour
 			                      m_maxNumberOfPlanners.ToString());
 			return null;
 		}
-		//UnityEngine.Debug.Log("startPos1:" + pathPlanParams.StartPos);
+
 		// Clamp the start and goal positions within the terrain space, and make sure they are on the floor.
 		pathPlanParams.UpdateStartAndGoalPos( m_terrain.GetValidPathFloorPos(pathPlanParams.StartPos) );
-		//UnityEngine.Debug.Log("startPos2:" + pathPlanParams.StartPos);
+
 		// Make sure this agent does not have an active request
 		if ( m_activeRequests.Count	 > 0 )
 		{
@@ -283,6 +283,10 @@ public class PathManagerComponent : MonoBehaviour
     {
         foreach (PathRequest request in m_activeRequests)
         {
+			if(request.m_replanTimeRemaining < 0){
+				UnityEngine.Debug.Log("Active No need to Replan");
+				continue;
+			}
             request.Update(deltaTimeInSeconds);
         }
     }
@@ -292,8 +296,13 @@ public class PathManagerComponent : MonoBehaviour
         LinkedList<PathRequest> removeCompletedRequests = new LinkedList<PathRequest>();
         foreach (PathRequest request in m_completedRequests)
         {
-            request.Update(deltaTimeInSeconds);
-			/* 寻路一次成功即可，无需在途中重新寻路
+			if(request.m_replanTimeRemaining < 0){
+				UnityEngine.Debug.Log("Complete No need to Replan");
+				continue;
+			}
+
+			request.Update(deltaTimeInSeconds);
+
             if (request.IsReadyToReplan())
             {
                 // and replan toward that pos.
@@ -309,7 +318,7 @@ public class PathManagerComponent : MonoBehaviour
                 int goalNodeIndex = m_terrain.GetPathNodeIndex(request.PlanParams.GoalPos);
 				request.PathPlanner.Item.StartANewPlan(startNodeIndex, goalNodeIndex);
             }
-            */
+
         }
 
         foreach (PathRequest request in removeCompletedRequests)

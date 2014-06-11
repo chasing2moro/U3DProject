@@ -50,6 +50,7 @@ public class NavigationAgentComponent : MonoBehaviour
 	#endregion
 	
 	#region Movement Requests
+#if false
 	//add by bobo
 	public bool ChangeTargetPos(int index){
 		Vector3 targetPos = PathTerrain.GetPathNodePos (index);
@@ -64,20 +65,22 @@ public class NavigationAgentComponent : MonoBehaviour
 		}
 		return false;
 	}
+#endif
+
 	//add by bobo
 	public bool MoveToIndex(int index){
        Vector3 targetPos = PathTerrain.GetPathNodePos (index);
 	   return MoveToPosition (targetPos);
 	}
 
-	public bool MoveToPosition(Vector3 targetPosition, float replanInterval = 1f)
+	public bool MoveToPosition(Vector3 targetPosition, float replanInterval = -1)
 	{
 		NavTargetPos navTargetPos = new NavTargetPos(targetPosition, PathTerrain);
 		m_planParams = new PathPlanParams(transform.position, navTargetPos, replanInterval);
 		return m_pathAgent.RequestPath(m_planParams);
 	}
 	
-	public bool MoveToGameObject(GameObject gameObject, float replanInterval)
+	public bool MoveToGameObject(GameObject gameObject, float replanInterval = -1)
 	{
 		NavTargetGameObject navTargetGameObject = new NavTargetGameObject(gameObject, PathTerrain);
 		m_planParams = new PathPlanParams(transform.position, navTargetGameObject, replanInterval);

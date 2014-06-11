@@ -200,7 +200,7 @@ namespace SimpleAI
 	
 	        if (!active[item.NodeIndex])
 	        {
-	            throw new InvalidOperationException("Attempt to return an inactive node.");
+				UnityEngine.Debug.LogError("Attempt to return an inactive node.");// throw new InvalidOperationException("Attempt to return an inactive node.");
 	        }
 	
 	        active[item.NodeIndex] = false;
