@@ -86,6 +86,7 @@ namespace SimpleAI.Planning
 
         public void StartANewPlan(int startNodeIndex, int goalNodeIndex)
         {
+			//UnityEngine.Debug.Log("startNodeIndex:" + startNodeIndex + " goalNodeIndex:" + goalNodeIndex);
 			if ( startNodeIndex	== Node.kInvalidIndex || goalNodeIndex == Node.kInvalidIndex )
 			{
 				m_planStatus = Planner.ePlanStatus.kPlanFailed;

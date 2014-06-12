@@ -12,10 +12,71 @@ using SimpleAI.Navigation;
 
 namespace SimpleAI.Navigation
 {
+	public interface IPathPlanParams{
+		Vector3 StartPos{get;}
+		Vector3 GoalPos{get;}
+	}
+
+	public class PathPlanParams_Batch : IPathPlanParams{
+		int m_startIndex;
+		int[] m_goalIndexArray;
+		int m_goalIndexIdx;
+		IPathTerrain m_terrain;
+
+		public PathPlanParams_Batch(int startIndex, int[] goalIndexArray, IPathTerrain terrain)
+		{
+			m_startIndex = startIndex;
+			m_goalIndexArray = goalIndexArray;
+			m_goalIndexIdx = 0;
+			m_terrain = terrain;
+		}
+
+		public Vector3 StartPos{
+			get{
+				return m_terrain.GetPathNodePos(m_startIndex);
+			}
+		}
+		public Vector3 GoalPos{
+			get{
+				return m_terrain.GetPathNodePos(m_goalIndexArray[m_goalIndexArray.Length - 1]);
+			}
+		}
+
+		public bool FinishPlan{
+			get{
+				return m_goalIndexIdx >= m_goalIndexArray.Length;
+			}
+		}
+
+		public void MoveNext(){
+			m_goalIndexIdx++;
+		}
+
+		public int CurrentGoalIndex() {
+			return m_goalIndexArray[m_goalIndexIdx];
+		}
+
+		public int GetCurrentIndex(){
+			if(m_goalIndexIdx == 0)
+				return m_startIndex;
+			else
+				return m_goalIndexArray[m_goalIndexIdx - 1];
+		}
+		public int GetCurrentGoalIndexAndMoveNext(){
+			if(FinishPlan){
+				Debug.LogError("Plan has Finish");
+				return m_goalIndexArray[m_goalIndexArray.Length - 1];
+			}
+			int pos = CurrentGoalIndex();
+			MoveNext();
+			return pos;
+		}
+
+	}
     /// <summary>
     ///Defines the characteristics of a path request
     /// </summary>
-    public class PathPlanParams
+	public class PathPlanParams  : IPathPlanParams
     {
         #region Fields
         Vector3         m_startPos;

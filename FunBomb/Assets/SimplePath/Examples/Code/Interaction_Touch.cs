@@ -3,10 +3,11 @@ using System.Collections;
 using SimpleAI.Navigation;
 using System.Collections.Generic;
 
-[RequireComponent(typeof(NavigationAgentComponent))]
+[RequireComponent(typeof(NavigationAgentComponent_Batch))]
+[RequireComponent(typeof(PathAgentComponent_Batch))]
 public class Interaction_Touch : MonoBehaviour
 {
-	private NavigationAgentComponent 		m_navigationAgent;
+	private NavigationAgentComponent_Batch 		m_navigationAgent;
 	private PathGrid										m_pathGrid;
 
 
@@ -26,7 +27,7 @@ public class Interaction_Touch : MonoBehaviour
 
 	void Awake()
 	{
-		m_navigationAgent = GetComponent<NavigationAgentComponent>();
+		m_navigationAgent = GetComponent<NavigationAgentComponent_Batch>();
 	}
 
 	// Use this for initialization
@@ -51,8 +52,8 @@ public class Interaction_Touch : MonoBehaviour
 		searchType = SearchPathType.TapToWalk;
 
 		Vector3 interactPos = CameraHelper.ScreenPosToBackgroundPos (gesture.StartPosition);
-		interactPos = m_pathGrid.GetNearestCellCenter (interactPos);
-		m_navigationAgent.MoveToPosition (interactPos, 1);
+		int[] indexArray = new int[]{ m_pathGrid.GetCellIndexClamped (interactPos)};
+		m_navigationAgent.MoveToIndex(indexArray);
 	}
 
 	void OnSwipe(SwipeGesture gesture){
@@ -62,49 +63,29 @@ public class Interaction_Touch : MonoBehaviour
 
 		foreach (Vector2 item in gesture.VectorsInProgress) {
 			Vector3 bgPos = CameraHelper.ScreenPosToBackgroundPos (item);
-			int index =	m_pathGrid.GetCellIndex(bgPos);
+			int index =	m_pathGrid.GetCellIndexClamped(bgPos);
 			if(m_pathGrid.IsBlocked(index))
 				continue;
-			if(!swipeIndexListRaw.Contains(index))
+
+			if(swipeIndexListRaw.Count == 0){
 				swipeIndexListRaw.Add(index);
-		}
-
-
-		for (int i = 0; i < swipeIndexListRaw.Count; i++) {
-			if(i == 0){
-				swipeIndexList.Add(swipeIndexListRaw[i]);
-				m_swipeLastRecordVec = new Vector2( m_pathGrid.GetRow(swipeIndexListRaw[i]), m_pathGrid.GetColumn(swipeIndexListRaw[i]) );
 				continue;
 			}
-			if(i == swipeIndexListRaw.Count - 1){
-				swipeIndexList.Add(swipeIndexListRaw[i]);
-				continue;//break
-			}
-			if(i == 1){
-				m_swipeCurrentVec = new Vector2( m_pathGrid.GetRow(swipeIndexListRaw[i]),  m_pathGrid.GetColumn(swipeIndexListRaw[i]) );
-			}else{
-				m_swipeCurrentVec = m_swipeNextVec;
-			}
-			m_swipeNextVec = new Vector2( m_pathGrid.GetRow(swipeIndexListRaw[i + 1]),  m_pathGrid.GetColumn(swipeIndexListRaw[i + 1]) );
 
-			if(Vector2.Dot((m_swipeCurrentVec - m_swipeLastRecordVec).normalized ,  (m_swipeNextVec - m_swipeCurrentVec).normalized) < 0.9f){
-				m_swipeLastRecordVec = new Vector2( m_pathGrid.GetRow(swipeIndexListRaw[i]), m_pathGrid.GetColumn(swipeIndexListRaw[i]) );
-				swipeIndexList.Add(swipeIndexListRaw[i]);
+			if(swipeIndexListRaw[swipeIndexListRaw.Count - 1] != index){
+				swipeIndexListRaw.Add(index);
 			}
-
 		}
-		
+
+		swipeIndexList =m_pathGrid.CornerIndexs(swipeIndexListRaw);
+
 		swipeIndexListIndex = 0;
-		m_navigationAgent.MoveToIndex (swipeIndexList[swipeIndexListIndex]);
+		m_navigationAgent.MoveToIndex (swipeIndexList.ToArray());
 	}
 
 	private void OnNavigationRequestSucceeded()
 	{
-		if (swipeIndexList.Count > 0 &&
-		    ++swipeIndexListIndex <  swipeIndexList.Count && 
-		    searchType == SearchPathType.SwipeToWalk) {
-				m_navigationAgent.MoveToIndex (swipeIndexList[swipeIndexListIndex]);
-		}
+		//Debug.Log("---------OnNavigationRequestSucceeded----------");
 	}
 	
 	void OnDrawGizmos()
@@ -117,7 +98,9 @@ public class Interaction_Touch : MonoBehaviour
 					Vector3 start = m_pathGrid.GetCellCenter (swipeIndexList [i - 1]);
 					Vector3 end = m_pathGrid.GetCellCenter (swipeIndexList [i]);
 					Gizmos.DrawLine (start, end);
-					
+					if(swipeIndexList [i - 1] == swipeIndexList [i]){
+						Debug.LogError("i =" + i + "  swipeIndexList [i - 1]  =" + swipeIndexList [i - 1]  + " swipeIndexList [i ]  " + swipeIndexList [i]  + " is the same");
+					}
 					Gizmos.DrawCube (start, new Vector3 (0.2f, 0.2f, 0.2f));
 				}
 			}

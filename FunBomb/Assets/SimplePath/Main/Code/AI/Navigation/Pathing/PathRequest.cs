@@ -35,6 +35,8 @@ namespace SimpleAI.Navigation
 		/// A <see cref="Vector3[]"/>
 		/// </returns>
 		Vector3[] GetSolutionPath(IPathTerrain world);
+
+		//int[] GetSolutionIndex(IPathTerrain world);
 		
 		/// <summary>
 		///Get the start position of the path request 
@@ -206,6 +208,27 @@ namespace SimpleAI.Navigation
 
 			return pathPoints;
         }
+//		public int[] GetSolutionIndex(IPathTerrain world){
+//			if (!HasSuccessfullyCompleted())
+//			{
+//				return null;
+//			}
+//			
+//			LinkedList<Planning.Node> path = GetSolutionPath();
+//			
+//			if ( path == null || path.Count == 0 )
+//			{
+//				return null;
+//			}
+//			
+//			int[] pathIndexs = new int[path.Count];
+//			int i = 0;
+//			foreach (Planning.Node node in path)
+//			{
+//				pathIndexs[i++] = node.Index;
+//			}
+//			return pathIndexs;
+//		}
 		
 		public Vector3 GetStartPos()
 		{
@@ -238,4 +261,162 @@ namespace SimpleAI.Navigation
 		}
         #endregion
     }
+
+	public class PathRequest_Batch : IComparable<PathRequest_Batch>, IPathRequestQuery
+	{
+		#region Fields
+		private int                        	 					m_priority;
+		private PathPlanParams_Batch            m_pathPlanParams;
+		private Pool<PathPlanner>.Node      	m_pathPlanner;
+		private IPathAgent                  				m_agent;
+		private List<int>                   m_solutionNodeList = new List<int>();
+		#endregion
+		
+		#region Properties
+		public int Priority
+		{
+			get { return m_priority; }
+		}
+		
+		public Pool<PathPlanner>.Node PathPlanner
+		{
+			get { return m_pathPlanner; }
+		}
+		
+		public PathPlanParams_Batch PlanParams
+		{
+			get { return m_pathPlanParams; }
+		}
+		
+		public IPathAgent Agent
+		{
+			get { return m_agent; }
+		}
+		#endregion
+		
+		#region Initialization
+		public PathRequest_Batch()
+		{
+			m_priority = 0;
+		}
+		
+		public void Set(PathPlanParams_Batch planParams, Pool<PathPlanner>.Node pathPlanner, IPathAgent agent)
+		{
+			m_pathPlanParams = planParams;
+			m_pathPlanner = pathPlanner;
+			m_agent = agent;
+			m_solutionNodeList.Clear();
+		}
+		#endregion
+
+		#region IComparable<Request> Members
+		public int CompareTo(PathRequest_Batch other)
+		{
+			if (m_priority > other.Priority)
+			{
+				return -1;
+			}
+			else if (m_priority < other.Priority)
+			{
+				return 1;
+			}
+			else
+			{
+				return 0;
+			}
+		}
+		#endregion
+		
+		#region IPathRequestQuery Members
+		public LinkedList<Node> GetSolutionPath()
+		{
+			Debug.LogError("Haven't implement");
+			return null;
+		}
+		
+		public Vector3[] GetSolutionPath(IPathTerrain terrain)
+		{
+			if (!HasSuccessfullyCompleted())
+			{
+				return null;
+			}
+			
+		//	LinkedList<Planning.Node> path = GetSolutionPath();
+			
+			if ( m_solutionNodeList == null || m_solutionNodeList.Count == 0 )
+			{
+				return null;
+			}
+
+			List<int> PathCornerIndexList = null;
+			if(terrain is PathGrid){
+				PathCornerIndexList = (terrain as PathGrid).CornerIndexs(m_solutionNodeList.ToArray());
+			}else{
+				Debug.LogError("terrain is not PathGrid");
+			}
+
+			Vector3[] pathPoints = new Vector3[PathCornerIndexList.Count];
+			int i = 0;
+			foreach (int cornerIndex in PathCornerIndexList)
+			{
+				//Debug.Log("node.Index:" + node.Index);
+				Vector3 nodePos = terrain.GetPathNodePos(cornerIndex);
+				pathPoints[i] = nodePos;
+				i++;
+			}
+			
+			// Set the first position to be the start position
+			pathPoints[0] = GetStartPos();
+			
+			// Set the last position to be the goal position.
+			int lastIndex = Mathf.Clamp(i, 0, PathCornerIndexList.Count - 1);
+			System.Diagnostics.Debug.Assert(lastIndex > 1 && lastIndex < PathCornerIndexList.Count);
+			pathPoints[lastIndex] = GetGoalPos();
+			
+			return pathPoints;
+		}
+		
+		public Vector3 GetStartPos()
+		{
+			return m_pathPlanParams.StartPos;
+		}
+		
+		public Vector3 GetGoalPos()
+		{
+			return m_pathPlanParams.GoalPos;
+		}
+		
+		public IPathAgent GetPathAgent()
+		{
+			return Agent;	
+		}
+		
+		public bool HasCompleted()
+		{
+			Debug.LogError("You should not use this method");
+			return m_pathPlanner.Item.HasPlanCompleted();
+		}
+		
+		public bool HasSuccessfullyCompleted()
+		{
+			return m_pathPlanParams.FinishPlan;
+		}
+		
+		public bool HasFailed()
+		{
+			 return m_pathPlanner.Item.HasPlanFailed();	
+		}
+		#endregion
+
+		public void AccumulateSolution(){
+			//m_solutionNodeList.AddLast(m_pathPlanner.Item.Solution);
+		//	Debug.Log("Add node Index:");
+			foreach (Node item in m_pathPlanner.Item.Solution) {
+				m_solutionNodeList.Add(item.Index);
+			//	Debug.Log(addItem.Index);
+			}
+		//	Debug.Log("---------------------");
+
+		}
+	}
 }

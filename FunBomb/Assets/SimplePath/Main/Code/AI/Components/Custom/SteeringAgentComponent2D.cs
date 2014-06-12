@@ -98,7 +98,7 @@ public class SteeringAgentComponent2D : MonoBehaviour , ISteeringAgent
 				m_pathStep.SetPos(transform.position, m_seekPos);
 			}
 			transform.position = m_pathStep.VectorByStep(Time.deltaTime * m_accelerationRate);
-			#endif
+#endif
 		}
 	}
 	
@@ -115,6 +115,7 @@ public class SteeringAgentComponent2D : MonoBehaviour , ISteeringAgent
 					Vector3 start = m_path.Points[i-1] + Vector3.up * 0.1f;
 					Vector3 end = m_path.Points[i] + Vector3.up * 0.1f;
 					Gizmos.DrawLine(start, end);
+					Gizmos.DrawWireSphere(end, m_arrivalDistance);
 				}
 				
 				// Draw the goal pos, if there is a path request.
@@ -145,7 +146,7 @@ public class SteeringAgentComponent2D : MonoBehaviour , ISteeringAgent
 	{
 		m_bArrived = false;
 		m_path = null;
-		rigidbody.velocity = Vector2.zero;
+		rigidbody2D.velocity = Vector2.zero;
 	}
 	
 	/// <summary>

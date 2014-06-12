@@ -4,6 +4,9 @@
 // 							SimplePath, Copyright © 2011, Alex Kring
 //
 // ******************************************************************************************
+using System.Collections.Generic;
+
+
 #endregion
 
 using UnityEngine;
@@ -251,6 +254,43 @@ namespace SimpleAI
 			        ConvertUtils.HorizontalValue( pos ) <= Right &&
 	                ConvertUtils.VerticalValue( pos ) <= Top &&
 			        ConvertUtils.VerticalValue( pos ) >= Bottom );
+		}
+
+
+
+
+		public List<int> CornerIndexs(int[] entireIndexArray){
+			Vector2 m_swipeLastRecordVec;
+			Vector2 m_swipeCurrentVec;
+			Vector2 m_swipeNextVec = Vector2.zero;
+			List<int> CornerIndexList = new List<int>();
+			
+			for (int i = 0; i < entireIndexArray.Length; i++) {
+				if(i == 0){
+					CornerIndexList.Add(entireIndexArray[i]);
+					m_swipeLastRecordVec = new Vector2( GetRow(entireIndexArray[i]), GetColumn(entireIndexArray[i]) );
+					continue;
+				}
+				if(i == entireIndexArray.Length - 1){
+					CornerIndexList.Add(entireIndexArray[i]);
+					break;
+				}
+				if(i == 1){
+					m_swipeCurrentVec = new Vector2( GetRow(entireIndexArray[i]),  GetColumn(entireIndexArray[i]) );
+				}else{
+					m_swipeCurrentVec = m_swipeNextVec;
+				}
+				m_swipeNextVec = new Vector2( GetRow(entireIndexArray[i + 1]),  GetColumn(entireIndexArray[i + 1]) );
+
+				if(Vector2.Dot((m_swipeCurrentVec - m_swipeLastRecordVec).normalized ,  (m_swipeNextVec - m_swipeCurrentVec).normalized) < 0.9f){
+					m_swipeLastRecordVec = new Vector2( GetRow(entireIndexArray[i]), GetColumn(entireIndexArray[i]) );
+					CornerIndexList.Add(entireIndexArray[i]);
+				}
+			}
+			return CornerIndexList;
+		}
+		public List<int> CornerIndexs(List<int> entireIndexArray){
+			return CornerIndexs(entireIndexArray.ToArray());
 		}
 	}
 	

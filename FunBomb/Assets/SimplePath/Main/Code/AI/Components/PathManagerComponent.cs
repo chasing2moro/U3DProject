@@ -284,7 +284,7 @@ public class PathManagerComponent : MonoBehaviour
         foreach (PathRequest request in m_activeRequests)
         {
 			if(request.m_replanTimeRemaining < 0){
-				UnityEngine.Debug.Log("Active No need to Replan");
+			//	UnityEngine.Debug.Log("Active No need to Replan");
 				continue;
 			}
             request.Update(deltaTimeInSeconds);
@@ -297,7 +297,7 @@ public class PathManagerComponent : MonoBehaviour
         foreach (PathRequest request in m_completedRequests)
         {
 			if(request.m_replanTimeRemaining < 0){
-				UnityEngine.Debug.Log("Complete No need to Replan");
+			//	UnityEngine.Debug.Log("Complete No need to Replan");
 				continue;
 			}
 
