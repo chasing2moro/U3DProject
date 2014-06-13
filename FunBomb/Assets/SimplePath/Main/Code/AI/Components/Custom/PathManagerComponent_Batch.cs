@@ -27,7 +27,18 @@ public class PathManagerComponent_Batch : MonoBehaviour
 	#region Fields
 	private Pool<PathPlanner>                   m_pathPlannerPool;
 	private Queue<PathRequest_Batch>                  m_requestPool;
-	private LinkedList<PathRequest_Batch>             m_activeRequests;
+	private LinkedList<PathRequest_Batch>             _activeRequests;
+	private LinkedList<PathRequest_Batch>             m_activeRequests{
+		get{
+			return _activeRequests;
+		}
+		set{
+			_activeRequests = value;
+			if(_activeRequests == null){
+				UnityEngine.Debug.LogError("set m_activeRequests to null");
+			}
+		}
+	}
 	private IPathTerrain                  		m_terrain;
 	private bool								m_bInitialized;
 	#endregion

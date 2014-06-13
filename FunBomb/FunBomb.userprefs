@@ -1,49 +1,47 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/SimplePath/Main/Code/AI/Planning/AStarPlanner.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/SimplePath/Main/Code/AI/Components/TileMapComponent.cs">
     <Files>
       <File FileName="Assets/SimplePath/Examples/Code/Interaction_Chase.cs" Line="1" Column="1" />
-      <File FileName="Assets/SimplePath/Main/Code/AI/Components/ObstacleGridComponent.cs" Line="45" Column="23" />
-      <File FileName="Assets/SimplePath/Examples/Code/Interaction_Touch.cs" Line="80" Column="62" />
-      <File FileName="Assets/SimplePath/Main/Code/AI/Components/NavigationAgentComponent.cs" Line="100" Column="42" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Components/ObstacleGridComponent.cs" Line="65" Column="64" />
+      <File FileName="Assets/SimplePath/Examples/Code/Interaction_Touch.cs" Line="67" Column="24" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Components/NavigationAgentComponent.cs" Line="1" Column="1" />
       <File FileName="Assets/SimplePath/Main/Code/AI/Components/PathAgentComponent.cs" Line="1" Column="1" />
-      <File FileName="Assets/SimplePath/Main/Code/AI/Navigation/Pathing/PathPlanParams.cs" Line="22" Column="25" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Navigation/Pathing/PathPlanParams.cs" Line="1" Column="1" />
       <File FileName="Assets/SimplePath/Main/Code/AI/Navigation/INavTarget.cs" Line="1" Column="1" />
       <File FileName="Assets/SimplePath/Main/Code/AI/Components/PathManagerComponent.cs" Line="1" Column="1" />
-      <File FileName="Assets/SimplePath/Main/Code/AI/Navigation/Pathing/PathRequest.cs" Line="355" Column="47" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Navigation/Pathing/PathRequest.cs" Line="1" Column="1" />
       <File FileName="Assets/SimplePath/Main/Code/AI/Navigation/Pathing/PathPlanner.cs" Line="1" Column="1" />
-      <File FileName="Assets/SimplePath/Main/Code/AI/Planning/AStarPlanner.cs" Line="34" Column="10" />
-      <File FileName="Assets/SimplePath/Main/Code/AI/Planning/Node.cs" Line="14" Column="5" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Planning/AStarPlanner.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Planning/Node.cs" Line="1" Column="1" />
       <File FileName="Assets/SimplePath/Main/Code/AI/Navigation/Pathing/IPathTerrain.cs" Line="1" Column="1" />
       <File FileName="Assets/SimplePath/Main/Code/AI/Navigation/Pathing/IPathAgent.cs" Line="1" Column="1" />
       <File FileName="Assets/SimplePath/Main/Code/AI/Navigation/Pathing/PathGrid.cs" Line="1" Column="1" />
-      <File FileName="Assets/SimplePath/Main/Code/AI/Components/PathTerrainComponent.cs" Line="1" Column="1" />
-      <File FileName="Assets/SimplePath/Main/Code/AI/Components/PathGridComponent.cs" Line="1" Column="1" />
-      <File FileName="Assets/SimplePath/Main/Code/AI/SolidityGrid.cs" Line="1" Column="1" />
-      <File FileName="Assets/SimplePath/Main/Code/AI/Grid.cs" Line="265" Column="42" />
-      <File FileName="Assets/Scripts/Utilities/TypeDefine.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Components/PathTerrainComponent.cs" Line="13" Column="1" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Components/PathGridComponent.cs" Line="14" Column="1" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/SolidityGrid.cs" Line="184" Column="6" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Grid.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Utilities/TypeDefine.cs" Line="7" Column="12" />
       <File FileName="Assets/Scripts/Utilities/CameraHelper.cs" Line="1" Column="1" />
       <File FileName="Assets/SimplePath/Examples/Code/Interaction_Patrol.cs" Line="1" Column="1" />
-      <File FileName="Assets/SimplePath/Main/Code/AI/Components/SteeringAgentComponent.cs" Line="146" Column="14" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Components/SteeringAgentComponent.cs" Line="1" Column="1" />
       <File FileName="Assets/SimplePath/Main/Code/AI/Pool.cs" Line="1" Column="1" />
-      <File FileName="Assets/SimplePath/Main/Code/AI/Components/Custom/PathAgentComponent_Batch.cs" Line="138" Column="42" />
-      <File FileName="Assets/SimplePath/Main/Code/AI/Components/Custom/SteeringAgentComponent2D.cs" Line="147" Column="1" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Components/Custom/PathAgentComponent_Batch.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Components/Custom/SteeringAgentComponent2D.cs" Line="1" Column="1" />
       <File FileName="Assets/SimplePath/Main/Code/AI/Navigation/Steering/SteeringPath.cs" Line="1" Column="1" />
       <File FileName="Assets/SimplePath/Main/Code/AI/BinaryHeap.cs" Line="1" Column="1" />
-      <File FileName="Assets/SimplePath/Main/Code/AI/Components/Custom/PathManagerComponent_Batch.cs" Line="113" Column="47" />
-      <File FileName="Assets/SimplePath/Main/Code/AI/Planning/Planner.cs" Line="71" Column="9" />
-      <File FileName="Assets/SimplePath/Main/Code/AI/Navigation/Pathing/ISteeringAgen.cs" Line="8" Column="2" />
-      <File FileName="Assets/SimplePath/Main/Code/AI/Components/Custom/NavigationAgentComponent_Batch.cs" Line="63" Column="1" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Components/Custom/PathManagerComponent_Batch.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Planning/Planner.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Navigation/Pathing/ISteeringAgen.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Components/Custom/NavigationAgentComponent_Batch.cs" Line="1" Column="1" />
       <File FileName="Assets/SimplePath/Main/Code/AI/Components/FootprintComponent.cs" Line="1" Column="1" />
       <File FileName="Assets/SimplePath/Examples/Code/Interaction_Wander.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Components/TileMapComponent.cs" Line="15" Column="14" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="D:\GitHub\U3DProject\FunBomb\Assets\SimplePath\Main\Code\AI\Navigation\Steering\SteeringPath.cs" line="246" />
-      <Breakpoint file="/Users/fengbiaozheng/Desktop/U3DProject/FunBomb/Assets/SimplePath/Main/Code/AI/Components/Custom/SteeringAgentComponent2D.cs" line="147" />
-      <Breakpoint file="/Users/fengbiaozheng/Desktop/U3DProject/FunBomb/Assets/SimplePath/Main/Code/AI/Planning/AStarPlanner.cs" line="139" />
-      <Breakpoint file="/Users/fengbiaozheng/Desktop/U3DProject/FunBomb/Assets/SimplePath/Main/Code/AI/Planning/AStarPlanner.cs" line="153" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>

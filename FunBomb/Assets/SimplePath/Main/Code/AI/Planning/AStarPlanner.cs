@@ -136,6 +136,7 @@ namespace SimpleAI.Planning
 			// Note: This failure condition must be tested BEFORE we remove an item from the open heap.
 			if (m_openNodes.Count == 0)
             {
+				UnityEngine.Debug.LogError("m_openNodes.Count = 0");
                 return ePlanStatus.kPlanFailed;
             }
 			

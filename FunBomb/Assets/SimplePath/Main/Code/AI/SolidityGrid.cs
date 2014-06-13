@@ -18,7 +18,7 @@ namespace SimpleAI
 	public class SolidityGrid : Grid
 	{
 	    #region Fields
-	    private bool[,] m_solidList;
+	    private GridType[,] m_solidList;
 	    #endregion
 	
 		public SolidityGrid()
@@ -29,24 +29,24 @@ namespace SimpleAI
 		public override void Awake (Vector3 origin, int numRows, int numCols, float cellSize, bool show)
 		{
 			base.Awake(origin, numRows, numCols, cellSize, show);
-			m_solidList = new bool[numCols,numRows];
+			m_solidList = new GridType[numCols,numRows];
 			
 			// Initialize all columns to false.
 			for (int colIndex = 0; colIndex < numCols; colIndex++)
 			{
 				for (int rowIndex = 0; rowIndex < numRows; rowIndex++)
 				{
-					m_solidList[colIndex, rowIndex] = false;
+					m_solidList[colIndex, rowIndex] = GridType.Background;
 				}
 			}
 		}
 		
-	    public void SetSolidity(bool[,] solidityList)
+	    public void SetSolidity(GridType[,] solidityList)
 	    {
-	        m_solidList = (bool[,])solidityList.Clone();
+			m_solidList = (GridType[,])solidityList.Clone();
 	    }
 		
-		public void SetSolidity(int cellIndex, bool bSolid)
+		public void SetSolidity(int cellIndex, GridType gridType )
 		{
 			if ( !IsInBounds(cellIndex) )
 			{
@@ -55,13 +55,13 @@ namespace SimpleAI
 			
 			int col = GetColumn(cellIndex);
 			int row = GetRow(cellIndex);
-			m_solidList[col, row] = bSolid;
+			m_solidList[col, row] = gridType;
 		}
 		
-		public void SetSolidity(Vector3 cellPos, bool bSolid)
+		public void SetSolidity(Vector3 cellPos, GridType gridType )
 		{
 			int cellIndex = GetCellIndex(cellPos);	
-			SetSolidity(cellIndex, bSolid);
+			SetSolidity(cellIndex, gridType);
 		}
 		
 		/// <summary>
@@ -178,7 +178,7 @@ namespace SimpleAI
 			
 			int col = GetColumn(cellIndex);
 			int row = GetRow(cellIndex);
-	        return m_solidList[col, row];
+			return (m_solidList[col, row] != GridType.Background);
 	    }
 	
 	    public bool IsBlocked(int index)
@@ -190,7 +190,7 @@ namespace SimpleAI
 				return true;
 			}
 			
-	        return m_solidList[col, row];
+			return  (m_solidList[col, row] != GridType.Background);
 	    }
 	}
 	

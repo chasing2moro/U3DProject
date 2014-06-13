@@ -47,7 +47,7 @@ public class ObstacleGridComponent : MonoBehaviour
 		// Clear the path grid from all blockages
 		for (int i = 0; i < m_pathGrid.NumberOfCells; i++)
 		{
-			m_pathGrid.SetSolidity(i, false);
+			m_pathGrid.SetSolidity(i, GridType.Background);
 		}
 		
 		// Render all of the footprints into the path grid as blocked
@@ -62,7 +62,7 @@ public class ObstacleGridComponent : MonoBehaviour
 				int obstructedCellIndex = obstructedCells[i];
 				if ( m_pathGrid.IsInBounds(obstructedCellIndex) )
 				{
-					m_pathGrid.SetSolidity(obstructedCellIndex, true);
+					m_pathGrid.SetSolidity(obstructedCellIndex, GridType.Steel);
 				}
 			}
 		}	
