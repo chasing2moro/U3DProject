@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\CBX Game\CBX.TileMapping\Unity\TileMap.cs" />
+     <Compile Include="Assets\Scripts\Manager\ExplosionManager.cs" />
      <Compile Include="Assets\Scripts\Utilities\CameraHelper.cs" />
      <Compile Include="Assets\Scripts\Utilities\TypeDefine.cs" />
      <Compile Include="Assets\Simple2d\Scripts\BackgroundParallax.cs" />
