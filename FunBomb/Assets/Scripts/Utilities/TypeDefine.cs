@@ -9,3 +9,10 @@ public enum GridType{
 	Brick,//砖头
 
 }
+
+public enum DirectionType{
+	Left,
+	Up,
+	Right,
+	Down
+}
