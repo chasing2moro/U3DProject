@@ -96,6 +96,7 @@ public class ExplosionManger : MonoBehaviour
 			for (int j = 0; j < m_length; j++) {
 				gameObject = m_ExplosionPoolInstance.DequeueFromPool();
 				gameObject.transform.position = positions[j];
+				gameObject.GetComponent<Animator>().SetTrigger("Explosion");
 				m_ExplosionList.Add(gameObject);
 			}
 		}
