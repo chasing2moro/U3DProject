@@ -258,7 +258,7 @@ namespace SimpleAI
 
 
 
-
+		//Custiom Method
 		public List<int> CornerIndexs(int[] entireIndexArray){
 			Vector2 m_swipeLastRecordVec;
 			Vector2 m_swipeCurrentVec;
@@ -292,6 +292,7 @@ namespace SimpleAI
 		public List<int> CornerIndexs(List<int> entireIndexArray){
 			return CornerIndexs(entireIndexArray.ToArray());
 		}
+
 	}
 	
 }

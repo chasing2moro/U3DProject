@@ -47,8 +47,12 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\CBX Game\CBX.TileMapping\Unity\TileMap.cs" />
-     <Compile Include="Assets\Scripts\Manager\ExplosionManager.cs" />
+     <Compile Include="Assets\Scripts\Manager\ExplosionManger.cs" />
+     <Compile Include="Assets\Scripts\Manager\ExplosionPool.cs" />
+     <Compile Include="Assets\Scripts\Manager\GameObjectPool.cs" />
      <Compile Include="Assets\Scripts\Utilities\CameraHelper.cs" />
+     <Compile Include="Assets\Scripts\Utilities\CommonHelper.cs" />
+     <Compile Include="Assets\Scripts\Utilities\GenericsSingleton.cs" />
      <Compile Include="Assets\Scripts\Utilities\TypeDefine.cs" />
      <Compile Include="Assets\Simple2d\Scripts\BackgroundParallax.cs" />
      <Compile Include="Assets\Simple2d\Scripts\BackgroundPropSpawner.cs" />

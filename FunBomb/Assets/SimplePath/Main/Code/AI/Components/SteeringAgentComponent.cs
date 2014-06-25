@@ -100,7 +100,7 @@ public class SteeringAgentComponent : MonoBehaviour , ISteeringAgent
 				m_pathStep.SetPos(transform.position, m_seekPos);
 			}
 			transform.position = m_pathStep.VectorByStep(Time.deltaTime * m_accelerationRate);
-			#endif
+#endif
 		}
 	}
 	

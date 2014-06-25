@@ -193,7 +193,7 @@ namespace SimpleAI.Navigation
 			return eNeighborDirection.kNoNeighbor;
 		}
 		
-	    private int GetNeighbor(int index, eNeighborDirection neighborDirection)
+	    public int GetNeighbor(int index, eNeighborDirection neighborDirection)
 	    {
 			Vector3 neighborPos = GetCellCenter(index);
 			
