@@ -52,7 +52,10 @@ public class Interaction_Touch : MonoBehaviour
 		searchType = SearchPathType.TapToWalk;
 
 		Vector3 interactPos = CameraHelper.ScreenPosToBackgroundPos (gesture.StartPosition);
-		int[] indexArray = new int[]{ m_pathGrid.GetCellIndexClamped (interactPos)};
+		int index = m_pathGrid.GetCellIndex (interactPos);
+		if(index == SimpleAI.Planning.Node.kInvalidIndex)
+			return;
+		int[] indexArray = new int[]{ index };
 		m_navigationAgent.MoveToIndex(indexArray);
 	}
 

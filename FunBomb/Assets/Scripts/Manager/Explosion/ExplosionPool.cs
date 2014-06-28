@@ -19,7 +19,7 @@ public class ExplosionPool : GameObjectPool
 	}
 
 	public override void Init(string gameObjectPath){
-		if(m_StaffGameObject == null)
+		if(m_StuffGameObject == null)
 			base.Init(gameObjectPath);
 	}
 }
