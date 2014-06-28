@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\CBX Game\CBX.TileMapping\Unity\TileMap.cs" />
+     <Compile Include="Assets\Scripts\Component\AnimationCallBackFunction.cs" />
      <Compile Include="Assets\Scripts\Manager\ExplosionManger.cs" />
      <Compile Include="Assets\Scripts\Manager\ExplosionPool.cs" />
      <Compile Include="Assets\Scripts\Manager\GameObjectPool.cs" />
