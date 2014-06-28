@@ -25,13 +25,14 @@ public class ExplosionManger : MonoBehaviour
 	//
 	private PathGrid m_PathGrid;
 
-	public int m_ExplosionIndex = 69;
+	int m_ExplosionIndex = 69;
 	public int m_length = 3;
+	public string m_ExplosionPrefabPath = "Prefab/Effect/Explosion";
 
 	void Awake(){
 
 		m_ExplosionPoolInstance = ExplosionPool.Instance;
-		m_ExplosionPoolInstance.Init("Prefab/Effect/Explosion");
+		m_ExplosionPoolInstance.Init(m_ExplosionPrefabPath);
 
 //		m_ExplosionListArray = new LinkedList<GameObject>[(int)PathGrid.eNeighborDirection.kNumNeighbors];
 	//	InitExplosionListArray();
@@ -83,11 +84,14 @@ public class ExplosionManger : MonoBehaviour
 			}
 		}
 #else
+		m_ExplosionIndex = m_PathGrid.GetPathNodeIndex( this.gameObject.transform.position );
+		
 		m_ExplosionList.Clear();
 
 		//add the first one
 		GameObject gameObject = m_ExplosionPoolInstance.DequeueFromPool();
 		gameObject.transform.position = m_PathGrid.GetPathNodePos(m_ExplosionIndex);
+		gameObject.GetComponent<Animator>().SetTrigger("Explosion");
 		m_ExplosionList.Add(gameObject);
 
 		//add others
@@ -110,6 +114,9 @@ public class ExplosionManger : MonoBehaviour
 		}
 		m_ExplosionList.Clear();
 	}
+
+
+
 
 	// Update is called once per frame
 	void Update ()
