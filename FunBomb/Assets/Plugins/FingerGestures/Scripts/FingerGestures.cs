@@ -24,6 +24,7 @@ public class FingerGestures : MonoBehaviour
     }
 
     #region Global Events
+	//
 
     public static event Gesture.EventHandler OnGestureEvent;
     public static event FingerEventDetector<FingerEvent>.FingerEventHandler OnFingerEvent;
@@ -32,6 +33,14 @@ public class FingerGestures : MonoBehaviour
     {
         if( OnGestureEvent != null )
             OnGestureEvent( gesture );
+		return;
+		Debug.Log( gesture.Recognizer.name + " fired its gesture event" );
+
+		if( gesture is TapGesture )
+			Debug.Log( "Tapped: " + ((TapGesture)gesture).Taps );
+
+		if( gesture is SwipeGesture )
+			Debug.Log( "Swipe Dir: " + ((SwipeGesture)gesture).Direction );
     }
 
     internal static void FireEvent( FingerEvent eventData )

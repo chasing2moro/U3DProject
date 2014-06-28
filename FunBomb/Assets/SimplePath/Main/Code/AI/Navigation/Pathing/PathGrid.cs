@@ -105,6 +105,17 @@ namespace SimpleAI.Navigation
 			//nodePos.y = GetTerrainHeight(nodePos);
 	        return nodePos;
 	    }
+
+		public bool GetPathNodePosByPos(Vector3 pos, out Vector3 outPos){
+			int index = GetPathNodeIndex(pos);
+			if(index == SimpleAI.Planning.Node.kInvalidIndex){
+				outPos = Vector3.zero;
+				return false;
+			}
+
+			outPos = GetPathNodePos(index);
+			return true;
+		}
 	
 	    public int GetPathNodeIndex(Vector3 pos)
 	    {

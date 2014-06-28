@@ -32,6 +32,8 @@ public class ExplosionManger : MonoBehaviour
 	void Awake(){
 
 		m_ExplosionPoolInstance = ExplosionPool.Instance;
+		if(m_ExplosionPoolInstance == null)
+			Debug.LogError("m_ExplosionPoolInstance == null");
 		m_ExplosionPoolInstance.Init(m_ExplosionPrefabPath);
 
 //		m_ExplosionListArray = new LinkedList<GameObject>[(int)PathGrid.eNeighborDirection.kNumNeighbors];
@@ -101,6 +103,7 @@ public class ExplosionManger : MonoBehaviour
 				gameObject = m_ExplosionPoolInstance.DequeueFromPool();
 				gameObject.transform.position = positions[j];
 				gameObject.GetComponent<Animator>().SetTrigger("Explosion");
+				Debug.Log("Set Explosion: pos" + gameObject.transform.position );
 				m_ExplosionList.Add(gameObject);
 			}
 		}

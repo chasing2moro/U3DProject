@@ -48,9 +48,10 @@
   <ItemGroup>
      <Compile Include="Assets\CBX Game\CBX.TileMapping\Unity\TileMap.cs" />
      <Compile Include="Assets\Scripts\Component\AnimationCallBackFunction.cs" />
-     <Compile Include="Assets\Scripts\Manager\ExplosionManger.cs" />
-     <Compile Include="Assets\Scripts\Manager\ExplosionPool.cs" />
-     <Compile Include="Assets\Scripts\Manager\GameObjectPool.cs" />
+     <Compile Include="Assets\Scripts\Manager\Explosion\ExplosionManger.cs" />
+     <Compile Include="Assets\Scripts\Manager\Explosion\ExplosionPool.cs" />
+     <Compile Include="Assets\Scripts\Manager\Explosion\GameObjectPool.cs" />
+     <Compile Include="Assets\Scripts\Unit\GameUnitObject.cs" />
      <Compile Include="Assets\Scripts\Utilities\CameraHelper.cs" />
      <Compile Include="Assets\Scripts\Utilities\CommonHelper.cs" />
      <Compile Include="Assets\Scripts\Utilities\GenericsSingleton.cs" />
