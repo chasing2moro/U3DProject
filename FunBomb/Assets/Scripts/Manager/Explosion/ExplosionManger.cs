@@ -86,6 +86,7 @@ public class ExplosionManger : MonoBehaviour
 			}
 		}
 #else
+		this.gameObject.SetActive(false);
 		m_ExplosionIndex = m_PathGrid.GetPathNodeIndex( this.gameObject.transform.position );
 		
 		m_ExplosionList.Clear();
