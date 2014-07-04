@@ -24,6 +24,7 @@ namespace CBX.Unity.Editors.Editor
         /// </summary>
         private void OnSceneGUI()
         {
+		//	Debug.Log("OnSceneGUI");
             // if UpdateHitPosition return true we should update the scene views so that the marker will update in real time
             if (this.UpdateHitPosition())
             {
@@ -182,6 +183,7 @@ namespace CBX.Unity.Editors.Editor
         /// <returns>Will return true if the mouse is positioned over the tile map.</returns>
         private bool IsMouseOnLayer()
         {
+			//Debug.Log("IsMouseOnLayer");
             // get reference to the tile map component
             var map = (TileMap)this.target;
 

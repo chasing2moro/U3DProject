@@ -1,11 +1,16 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../../../New Unity Project 1/Assets/Plugins/FingerGestures/Scripts/Toolbox/TBDragToMove.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Component/ObstacleEventReceiver.cs">
     <Files>
       <File FileName="../../../New Unity Project 1/Assets/FingerGestures Samples/Assets/Scripts/SampleUI.cs" Line="8" Column="5" />
-      <File FileName="../../../New Unity Project 1/Assets/FingerGestures Samples/3) Toolbox/Scripts/ToolboxDragSample.cs" Line="8" Column="42" />
-      <File FileName="../../../New Unity Project 1/Assets/FingerGestures Samples/Assets/Scripts/SampleBase.cs" Line="8" Column="1" />
-      <File FileName="../../../New Unity Project 1/Assets/Plugins/FingerGestures/Scripts/Toolbox/TBDragToMove.cs" Line="154" Column="16" />
+      <File FileName="../../../New Unity Project 1/Assets/FingerGestures Samples/3) Toolbox/Scripts/ToolboxDragSample.cs" Line="1" Column="1" />
+      <File FileName="../../../New Unity Project 1/Assets/FingerGestures Samples/Assets/Scripts/SampleBase.cs" Line="1" Column="1" />
+      <File FileName="../../../New Unity Project 1/Assets/Plugins/FingerGestures/Scripts/Toolbox/TBDragToMove.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Manager/Explosion/ExplosionManger.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Unit/GameUnitObject.cs" Line="1" Column="1" />
+      <File FileName="Assets/CBX Game/CBX.TileMapping/Unity/TileMap.cs" Line="1" Column="1" />
+      <File FileName="Assets/CBX Game/CBX.Unity.Editors/Editor/TileMapping/TileMapEditor.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Component/ObstacleEventReceiver.cs" Line="7" Column="25" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
