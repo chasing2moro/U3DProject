@@ -1,8 +1,9 @@
+
 using UnityEngine;
 using System.Collections;
 using SimpleAI.Navigation;
 
-//[ExecuteInEditMode]
+[ExecuteInEditMode]
 public class ObstacleEventReceiver : MonoBehaviour
 {
 	void OnTap(TapGesture gesture) { 
@@ -10,13 +11,10 @@ public class ObstacleEventReceiver : MonoBehaviour
 	}
 	#region ExecuteInEditMode
 	private PathGridComponent m_PathGridComponent;
-	public bool m_RepaintColliderBox = true;
+	public bool m_RepaintColliderBox = false;
 
 	void Start(){
-//		m_PathGridComponent = this.transform.parent.gameObject.GetComponent<PathGridComponent>();
-//		if(m_PathGridComponent == null)
-//			Debug.LogError("m_PathGridComponent == null");
-		RepaintCollderBox();
+
 	}
 
 	void Update(){
@@ -31,18 +29,11 @@ public class ObstacleEventReceiver : MonoBehaviour
 		m_PathGridComponent = this.transform.parent.gameObject.GetComponent<PathGridComponent>();
 		if(m_PathGridComponent == null)
 			Debug.LogError("m_PathGridComponent == null");
-
-	  
-
-
-	//	Debug.Log(this.collider.bounds.min + " " + this.collider.bounds.max);
-		Debug.Log(	new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, -0.5f) + " " +  new Vector3(m_PathGridComponent.m_cellSize * m_PathGridComponent.m_numberOfColumns, m_PathGridComponent.m_cellSize * m_PathGridComponent.m_numberOfRows, 0.5f));
-		this.collider.bounds.SetMinMax(new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, -0.5f),
-		                               new Vector3(m_PathGridComponent.m_cellSize * m_PathGridComponent.m_numberOfColumns, m_PathGridComponent.m_cellSize * m_PathGridComponent.m_numberOfRows, 0.5f)
-		                               );
-		Debug.Log("====");
-		//this.collider.bounds.center = gridBounds.center;
-		//this.collider.bounds.size = gridBounds.size;
+		float cellSize = m_PathGridComponent.m_cellSize;
+		int column = m_PathGridComponent.m_numberOfColumns;
+		int row = m_PathGridComponent.m_numberOfRows;
+		Debug.Log("center:" + new Vector3(this.gameObject.transform.position.x + (cellSize * column) / 2, this.gameObject.transform.position.y  +  (cellSize * row) / 2, this.gameObject.transform.position.z));
+		Debug.Log("size:" + new Vector2(cellSize * column, cellSize * row));
 	}
 	#endregion
 }

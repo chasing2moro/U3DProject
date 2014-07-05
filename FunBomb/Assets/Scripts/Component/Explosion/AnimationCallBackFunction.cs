@@ -17,4 +17,9 @@ public class AnimationCallBackFunction : MonoBehaviour {
 		Debug.Log("AnimationCallBackFunction ReturnToPool()");
 		ExplosionPool.Instance.EnqueueToPool(this.gameObject);
 	}
+
+	//
+	public void ReturnBomberToPool(){
+
+	}
 }

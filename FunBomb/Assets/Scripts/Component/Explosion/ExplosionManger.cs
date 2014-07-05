@@ -52,10 +52,11 @@ public class ExplosionManger : MonoBehaviour
 		if(m_PathGrid == null)
 			UnityEngine.Debug.LogError("m_PathGrid == null");
 
-		Explose();
+	//	Explose();
 	}
 
-	void Explose(){
+	public void Explose(){
+		Debug.Log("Explose");
 #if flase
 		//Get Position
 		m_PositionsList.Clear();
@@ -86,7 +87,7 @@ public class ExplosionManger : MonoBehaviour
 			}
 		}
 #else
-		this.gameObject.SetActive(false);
+	//	this.gameObject.SetActive(false);
 		m_ExplosionIndex = m_PathGrid.GetPathNodeIndex( this.gameObject.transform.position );
 		
 		m_ExplosionList.Clear();
@@ -104,7 +105,7 @@ public class ExplosionManger : MonoBehaviour
 				gameObject = m_ExplosionPoolInstance.DequeueFromPool();
 				gameObject.transform.position = positions[j];
 				gameObject.GetComponent<Animator>().SetTrigger("Explosion");
-				Debug.Log("Set Explosion: pos" + gameObject.transform.position );
+				//Debug.Log("Set Explosion: pos" + gameObject.transform.position );
 				m_ExplosionList.Add(gameObject);
 			}
 		}

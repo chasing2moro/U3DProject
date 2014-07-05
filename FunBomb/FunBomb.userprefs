@@ -1,16 +1,26 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Component/ObstacleEventReceiver.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Component/Explosion/ExplosionManger.cs">
     <Files>
-      <File FileName="../../../New Unity Project 1/Assets/FingerGestures Samples/Assets/Scripts/SampleUI.cs" Line="8" Column="5" />
+      <File FileName="Assets/Scripts/Component/ObstacleEventReceiver.cs" Line="1" Column="1" />
+      <File FileName="../../../New Unity Project 1/Assets/FingerGestures Samples/Assets/Scripts/SampleUI.cs" Line="1" Column="1" />
       <File FileName="../../../New Unity Project 1/Assets/FingerGestures Samples/3) Toolbox/Scripts/ToolboxDragSample.cs" Line="1" Column="1" />
       <File FileName="../../../New Unity Project 1/Assets/FingerGestures Samples/Assets/Scripts/SampleBase.cs" Line="1" Column="1" />
       <File FileName="../../../New Unity Project 1/Assets/Plugins/FingerGestures/Scripts/Toolbox/TBDragToMove.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Manager/Explosion/ExplosionManger.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Unit/GameUnitObject.cs" Line="1" Column="1" />
       <File FileName="Assets/CBX Game/CBX.TileMapping/Unity/TileMap.cs" Line="1" Column="1" />
       <File FileName="Assets/CBX Game/CBX.Unity.Editors/Editor/TileMapping/TileMapEditor.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Component/ObstacleEventReceiver.cs" Line="7" Column="25" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Components/PathGridComponent.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Navigation/Pathing/PathGrid.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/SolidityGrid.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Grid.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Manager/Explosion/BomberManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Manager/Explosion/ExplosionPool.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Manager/Explosion/GameObjectPool.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Component/Explosion/BomberExplose.cs" Line="22" Column="3" />
+      <File FileName="Assets/Scripts/Component/Explosion/ExplosionManger.cs" Line="90" Column="4" />
+      <File FileName="Assets/Scripts/Component/Explosion/AnimationCallBackFunction.cs" Line="1" Column="1" />
+      <File FileName="Assets/Plugins/FingerGestures/Scripts/FingerGestures.cs" Line="69" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
