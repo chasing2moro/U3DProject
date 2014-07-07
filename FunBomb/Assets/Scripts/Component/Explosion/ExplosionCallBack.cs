@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AnimationCallBackFunction : MonoBehaviour {
+public class ExplosionCallBack : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
