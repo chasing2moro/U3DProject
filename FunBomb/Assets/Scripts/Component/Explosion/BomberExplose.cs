@@ -22,5 +22,9 @@ public class BomberExplose : MonoBehaviour
 		Debug.Log("Explose");
 		m_ExplosionManger.Explose();
 	}
+
+	public void ReturnToPool(){
+		BomberManager.Instance.RecycleBomber(this.gameObject);
+	}
 }
 

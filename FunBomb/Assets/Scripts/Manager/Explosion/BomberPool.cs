@@ -1,13 +1,13 @@
 using UnityEngine;
 using System.Collections;
 
-public class ExplosionPool : GameObjectPool
+public class BomberPool : GameObjectPool
 {
-	internal static ExplosionPool _instance = new ExplosionPool();
-	public static ExplosionPool Instance 
+	internal static BomberPool _instance = new BomberPool();
+	public static BomberPool Instance 
 	{ 
 		get {
-			if( null == _instance ) _instance = new ExplosionPool();
+			if( null == _instance ) _instance = new BomberPool();
 			return _instance;
 		}
 	}
@@ -16,7 +16,7 @@ public class ExplosionPool : GameObjectPool
 	{
 		_instance = null;
 	}
-
+	
 	public override void Init(string gameObjectPath){
 		if(m_StuffGameObject == null)
 			base.Init(gameObjectPath);

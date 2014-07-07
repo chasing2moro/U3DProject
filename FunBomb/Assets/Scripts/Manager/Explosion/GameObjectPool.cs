@@ -28,7 +28,6 @@ public class GameObjectPool
 	public virtual void Init(string gameObjectPath){
 		m_GameObjectPath = gameObjectPath;
 		m_GameObjectPool = new Queue<GameObject> ();
-		//Debug.Log("m_GameObjectPath:" + m_GameObjectPath);
 		m_StuffGameObject = Resources.Load<GameObject>(m_GameObjectPath);
 		if(m_StuffGameObject == null)
 			UnityEngine.Debug.LogError("m_StuffGameObject == null");
