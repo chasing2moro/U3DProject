@@ -22,6 +22,7 @@ public class BomberManager : Singleton<BomberManager>
 	}
 
 	public void RecycleBomber(GameObject bomber){
+		bomber.transform.position = CommonHelper.HidenPos3D;
 		m_BomberPool.EnqueueToPool(bomber);
 		m_BomberList.Remove(bomber);
 	}

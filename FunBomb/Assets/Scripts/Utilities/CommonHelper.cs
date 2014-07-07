@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using SimpleAI.Navigation;
 
-public class CommonHelper
+public class CommonHelper : Singleton<CommonHelper>
 {
 	public static Vector3[] PositionsByDirection(int gridIndex, int length, PathGrid.eNeighborDirection dirction,PathGrid grid ){
 	//	UnityEngine.Debug.Log("Origin PosIndex:" + gridIndex);
@@ -14,5 +14,7 @@ public class CommonHelper
 		}
 		return Positions;
 	}
+	public static Vector3 HidenPos3D = new Vector3(-100, -100, 0);
+	public static Vector2 HidenPos2D = new Vector2(-100, -100);
 }
 

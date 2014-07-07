@@ -7,7 +7,8 @@ using SimpleAI.Navigation;
 public class ObstacleEventReceiver : MonoBehaviour
 {
 	void OnTap(TapGesture gesture) { 
-		Debug.Log("tap pos:" + gesture.Position);
+		Debug.Log("tap Screen pos:" + gesture.Position);
+		Debug.Log("tap Obj pos:" + CameraHelper.ScreenPosToBackgroundPos(gesture.Position));
 	}
 	#region ExecuteInEditMode
 	private PathGridComponent m_PathGridComponent;

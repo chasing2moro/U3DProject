@@ -14,7 +14,8 @@ public class ExplosionCallBack : MonoBehaviour {
 	}
 
 	public void ReturnToPool(){
-		Debug.Log("AnimationCallBackFunction ReturnToPool()");
+		Debug.Log("ReturnToPool()");
+		this.gameObject.transform.position = CommonHelper.HidenPos3D;
 		ExplosionPool.Instance.EnqueueToPool(this.gameObject);
 	}
 
