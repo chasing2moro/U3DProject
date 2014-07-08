@@ -1,8 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Component/Explosion/ExplosionCallBack.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Component/Explosion/ExplosionManger.cs">
     <Files>
-      <File FileName="Assets/Scripts/Component/ObstacleEventReceiver.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Component/ObstacleEventReceiver.cs" Line="11" Column="37" />
       <File FileName="../../../New Unity Project 1/Assets/FingerGestures Samples/Assets/Scripts/SampleUI.cs" Line="1" Column="1" />
       <File FileName="../../../New Unity Project 1/Assets/FingerGestures Samples/3) Toolbox/Scripts/ToolboxDragSample.cs" Line="1" Column="1" />
       <File FileName="../../../New Unity Project 1/Assets/FingerGestures Samples/Assets/Scripts/SampleBase.cs" Line="1" Column="1" />
@@ -14,19 +14,25 @@
       <File FileName="Assets/SimplePath/Main/Code/AI/Navigation/Pathing/PathGrid.cs" Line="1" Column="1" />
       <File FileName="Assets/SimplePath/Main/Code/AI/SolidityGrid.cs" Line="1" Column="1" />
       <File FileName="Assets/SimplePath/Main/Code/AI/Grid.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Manager/Explosion/BomberManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Manager/Explosion/BomberManager.cs" Line="10" Column="38" />
       <File FileName="Assets/Scripts/Manager/Explosion/ExplosionPool.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Manager/Explosion/GameObjectPool.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Component/Explosion/BomberExplose.cs" Line="27" Column="57" />
-      <File FileName="Assets/Scripts/Component/Explosion/ExplosionManger.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Component/Explosion/BomberExplose.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Component/Explosion/ExplosionManger.cs" Line="127" Column="16" />
       <File FileName="Assets/Plugins/FingerGestures/Scripts/FingerGestures.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Manager/Explosion/BomberPool.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Utilities/PathHelper.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Component/Explosion/ExplosionCallBack.cs" Line="4" Column="31" />
+      <File FileName="Assets/Scripts/Component/Explosion/ExplosionCallBack.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Utilities/CommonHelper.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Utilities/CameraHelper.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimplePath/Examples/Code/Interaction_Touch.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Unit/Player.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/fengbiaozheng/Desktop/U3DProject/FunBomb/Assets/Scripts/Manager/Explosion/BomberManager.cs" line="26" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

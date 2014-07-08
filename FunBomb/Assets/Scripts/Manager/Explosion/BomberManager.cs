@@ -7,7 +7,7 @@ public class BomberManager : Singleton<BomberManager>
 	private BomberPool m_BomberPool = BomberPool.Instance;
 	public List<GameObject> m_BomberList = new List<GameObject>();
 	public BomberManager(){
-		SetBomberPath(PathHelper.ExplosionPath);
+		SetBomberPath(PathHelper.BomberPath);
 	}
 
 	public void SetBomberPath(string path){
@@ -16,6 +16,7 @@ public class BomberManager : Singleton<BomberManager>
 
 	public void LayBomber(Vector2 pos){
 		GameObject bomber = m_BomberPool.DequeueFromPool();
+		bomber.GetComponent<Animator>().SetTrigger("WaitingForExplose");
 		float pos_Z = bomber.transform.position.z;
 		bomber.transform.position = new Vector3(pos.x, pos.y, pos_Z);
 		m_BomberList.Add(bomber);

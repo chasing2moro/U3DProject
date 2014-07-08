@@ -4,15 +4,16 @@ using SimpleAI.Navigation;
 
 public class GameUnitObject : MonoBehaviour
 {
-	public float m_Speed;
-	private PathGrid										m_pathGrid;
-	private NavigationAgentComponent_Batch m_navigationAgent;
+	public  float 																m_Speed;
+	protected PathGrid														m_pathGrid;
+	protected NavigationAgentComponent_Batch 			m_navigationAgent;
 
 	void OnGUI() {
 		if (GUI.Button(new Rect(10, 10, 150, 100), "Lay Bomb")){
 			Vector3 LayBombPos;
 			if( m_pathGrid.GetPathNodePosByPos(this.gameObject.transform.position, out LayBombPos) ){
-				(Instantiate( Resources.Load<GameObject>("Prefab/Props/Bomber") ) as GameObject).transform.position = LayBombPos;
+				//(Instantiate( Resources.Load<GameObject>("Prefab/Props/Bomber") ) as GameObject).transform.position = LayBombPos;
+				BomberManager.Instance.LayBomber(new Vector2(LayBombPos.x, LayBombPos.y));
 			}
 
 

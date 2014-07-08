@@ -24,6 +24,7 @@ public class BomberExplose : MonoBehaviour
 	}
 
 	public void ReturnToPool(){
+		this.gameObject.transform.position = CommonHelper.HidenPos3D;
 		BomberManager.Instance.RecycleBomber(this.gameObject);
 	}
 }

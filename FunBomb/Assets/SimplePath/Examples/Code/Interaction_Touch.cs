@@ -47,7 +47,7 @@ public class Interaction_Touch : MonoBehaviour
 			swipeIndexListIndex = 0;
 	
 	}
-	
+
 	void OnTap(TapGesture gesture) {
 		searchType = SearchPathType.TapToWalk;
 
