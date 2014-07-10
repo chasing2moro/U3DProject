@@ -91,6 +91,8 @@ public class ExplosionManger : MonoBehaviour
 		m_ExplosionIndex = m_PathGrid.GetPathNodeIndex( this.gameObject.transform.position );
 		
 		m_ExplosionList.Clear();
+		m_Index2PathGridIndexList.Clear();
+		//add the first one
 
 		//add the first one
 		GameObject gameObject = m_ExplosionPoolInstance.DequeueFromPool();
@@ -121,7 +123,7 @@ public class ExplosionManger : MonoBehaviour
 //	}
 
 
-
+	private List<List<int>> m_Index2PathGridIndexList = new List<List<int>>();
 
 	// Update is called once per frame
 	void Update ()
