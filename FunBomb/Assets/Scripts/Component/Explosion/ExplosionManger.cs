@@ -21,7 +21,6 @@ public class ExplosionManger : MonoBehaviour
 //	}
 
 	private  List< GameObject > m_ExplosionList;
-	private List<Vector3[]> m_PositionsList;
 	//
 	private PathGrid m_PathGrid;
 
@@ -40,7 +39,7 @@ public class ExplosionManger : MonoBehaviour
 	//	InitExplosionListArray();
 
 		m_ExplosionList = new List<GameObject>();
-		m_PositionsList = new List<Vector3[]>();
+
 
 
 	}
@@ -57,61 +56,50 @@ public class ExplosionManger : MonoBehaviour
 
 	public void Explose(){
 		Debug.Log("Explose");
-#if flase
-		//Get Position
-		m_PositionsList.Clear();
-		for (int i = 0; i < (int)PathGrid.eNeighborDirection.kNumNeighbors; i++) {
-			Vector3[] positions = CommonHelper.PositionsByDirection(m_ExplosionIndex, m_length, (PathGrid.eNeighborDirection) i, m_PathGrid);
-			m_PositionsList.Add(positions);
-		}
 
-		//Take Object From Pool
-		m_ExplosionList.Clear();
-		GameObject gameObject = m_ExplosionPoolInstance.DequeueFromPool();
-		m_ExplosionList.Add(gameObject);
-		for (int i = 0; 
-		     i < m_length * (int)PathGrid.eNeighborDirection.kNumNeighbors; 
-		     i++) {
-			gameObject = m_ExplosionPoolInstance.DequeueFromPool();
-			m_ExplosionList.Add(gameObject);
-		}
-
-		//Set Position
-		int index = 0;
-		m_ExplosionList[index].transform.position = m_PathGrid.GetPathNodePos(m_ExplosionIndex);
-		for (int i = 0; i < (int)PathGrid.eNeighborDirection.kNumNeighbors; i++) {
-			Vector3[] positions = m_PositionsList[(int)i];
-			for (int j = 0; j < m_length; j++) {
-				index = (j * (int)PathGrid.eNeighborDirection.kNumNeighbors) + i;
-				m_ExplosionList[index + 1].transform.position = positions[j];
-			}
-		}
-#else
-	//	this.gameObject.SetActive(false);
 		m_ExplosionIndex = m_PathGrid.GetPathNodeIndex( this.gameObject.transform.position );
 		
 		m_ExplosionList.Clear();
-		m_Index2PathGridIndexList.Clear();
-		//add the first one
+		m_Index2PathGridPosList.Clear();
 
 		//add the first one
-		GameObject gameObject = m_ExplosionPoolInstance.DequeueFromPool();
-		gameObject.transform.position = m_PathGrid.GetPathNodePos(m_ExplosionIndex);
-		gameObject.GetComponent<Animator>().SetTrigger("Explosion");
-		m_ExplosionList.Add(gameObject);
-
+		List<Vector3> firstPosList = new List<Vector3>(1);
+		firstPosList.Add( m_PathGrid.GetPathNodePos(m_ExplosionIndex) ) ;
+		m_Index2PathGridPosList.Add(firstPosList);
 		//add others
 		for (int i = 0; i < (int)PathGrid.eNeighborDirection.kNumNeighbors; i++) {
-			Vector3[] positions = CommonHelper.PositionsByDirection(m_ExplosionIndex, m_length, (PathGrid.eNeighborDirection) i, m_PathGrid);
-			for (int j = 0; j < m_length; j++) {
-				gameObject = m_ExplosionPoolInstance.DequeueFromPool();
-				gameObject.transform.position = positions[j];
+			List<Vector3> positions = CommonHelper.PositionsByDirection(m_ExplosionIndex, m_length, (PathGrid.eNeighborDirection) i, m_PathGrid);
+			m_Index2PathGridPosList.Add(positions);
+		}
+
+		foreach (List<Vector3> PathGridPosList in m_Index2PathGridPosList) {
+			foreach (Vector3 PathGridPos in PathGridPosList) {
+				GameObject gameObject = m_ExplosionPoolInstance.DequeueFromPool();
+				gameObject.transform.position = PathGridPos;
 				gameObject.GetComponent<Animator>().SetTrigger("Explosion");
-				//Debug.Log("Set Explosion: pos" + gameObject.transform.position );
 				m_ExplosionList.Add(gameObject);
 			}
 		}
-#endif
+
+//
+//		//add the first one
+//		GameObject gameObject = m_ExplosionPoolInstance.DequeueFromPool();
+//		gameObject.transform.position = m_PathGrid.GetPathNodePos(m_ExplosionIndex);
+//		gameObject.GetComponent<Animator>().SetTrigger("Explosion");
+//		m_ExplosionList.Add(gameObject);
+//
+//		//add others
+//		for (int i = 0; i < (int)PathGrid.eNeighborDirection.kNumNeighbors; i++) {
+//			Vector3[] positions = CommonHelper.PositionsByDirection(m_ExplosionIndex, m_length, (PathGrid.eNeighborDirection) i, m_PathGrid);
+//			for (int j = 0; j < m_length; j++) {
+//				gameObject = m_ExplosionPoolInstance.DequeueFromPool();
+//				gameObject.transform.position = positions[j];
+//				gameObject.GetComponent<Animator>().SetTrigger("Explosion");
+//				//Debug.Log("Set Explosion: pos" + gameObject.transform.position );
+//				m_ExplosionList.Add(gameObject);
+//			}
+//		}
+
 	}
 
 	//Return Object To Pool
@@ -123,7 +111,7 @@ public class ExplosionManger : MonoBehaviour
 //	}
 
 
-	private List<List<int>> m_Index2PathGridIndexList = new List<List<int>>();
+	private List<List<Vector3>> m_Index2PathGridPosList = new List<List<Vector3>>();
 
 	// Update is called once per frame
 	void Update ()

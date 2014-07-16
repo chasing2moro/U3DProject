@@ -1,15 +1,18 @@
 using UnityEngine;
 using System.Collections;
 using SimpleAI.Navigation;
+using System.Collections.Generic;
 
 public class CommonHelper : Singleton<CommonHelper>
 {
-	public static Vector3[] PositionsByDirection(int gridIndex, int length, PathGrid.eNeighborDirection dirction,PathGrid grid ){
+	public static List<Vector3> PositionsByDirection(int gridIndex, int length, PathGrid.eNeighborDirection dirction,PathGrid grid ){
 	//	UnityEngine.Debug.Log("Origin PosIndex:" + gridIndex);
-		Vector3[] Positions = new Vector3[length];
+		List<Vector3> Positions = new List<Vector3>();
 		for (int i = 0; i < length; i++) {
 			gridIndex = grid.GetNeighbor(gridIndex, dirction);
-			Positions[i] = grid.GetPathNodePos(gridIndex);
+			if(grid.IsBlocked(gridIndex))
+				return Positions;
+			Positions.Add( grid.GetPathNodePos(gridIndex) );
 		//	UnityEngine.Debug.Log("Search PosIndex:" + gridIndex);
 		}
 		return Positions;
