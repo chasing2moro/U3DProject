@@ -54,8 +54,9 @@
      <Compile Include="Assets\Scripts\Manager\Explosion\BomberManager.cs" />
      <Compile Include="Assets\Scripts\Manager\Explosion\BomberPool.cs" />
      <Compile Include="Assets\Scripts\Manager\Explosion\ExplosionPool.cs" />
-     <Compile Include="Assets\Scripts\Manager\Explosion\GameObjectPool.cs" />
+     <Compile Include="Assets\Scripts\Manager\GameObjectPool.cs" />
      <Compile Include="Assets\Scripts\Manager\Map\TileMap.cs" />
+     <Compile Include="Assets\Scripts\Unit\Enemy.cs" />
      <Compile Include="Assets\Scripts\Unit\GameUnitObject.cs" />
      <Compile Include="Assets\Scripts\Unit\Player.cs" />
      <Compile Include="Assets\Scripts\Utilities\CameraHelper.cs" />

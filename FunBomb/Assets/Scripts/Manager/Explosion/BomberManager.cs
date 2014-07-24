@@ -27,5 +27,9 @@ public class BomberManager : Singleton<BomberManager>
 		m_BomberPool.EnqueueToPool(bomber);
 		m_BomberList.Remove(bomber);
 	}
+
+	void DetectEffectEnemy(){
+
+	}
 }
 
