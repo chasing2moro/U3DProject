@@ -51,6 +51,7 @@
      <Compile Include="Assets\Scripts\Component\Explosion\ExplosionCallBack.cs" />
      <Compile Include="Assets\Scripts\Component\Explosion\ExplosionManger.cs" />
      <Compile Include="Assets\Scripts\Component\ObstacleEventReceiver.cs" />
+     <Compile Include="Assets\Scripts\Component\Wander.cs" />
      <Compile Include="Assets\Scripts\Manager\Explosion\BomberManager.cs" />
      <Compile Include="Assets\Scripts\Manager\Explosion\BomberPool.cs" />
      <Compile Include="Assets\Scripts\Manager\Explosion\ExplosionPool.cs" />

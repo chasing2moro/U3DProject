@@ -43,6 +43,10 @@ public class NavigationAgentComponent_Batch : MonoBehaviour
 		m_planParams = new PathPlanParams_Batch(startIndex, goalIndexArray, PathTerrain);
 		return m_pathAgent.RequestPath(m_planParams);
 	}
+	public bool MoveToIndex(int index){
+		int[] goalIndexArray = new int[]{index};
+		return MoveToIndex(goalIndexArray);
+	}
 	
 	public void CancelActiveRequest()
 	{
