@@ -1,26 +1,58 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Component/Wander.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Component/AnimationCallBackFunction.cs">
     <Files>
-      <File FileName="Assets/Scripts/Component/ObstacleEventReceiver.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Component/AnimationCallBackFunction.cs" Line="10" Column="2" />
+      <File FileName="Assets/SimplePath/Examples/Code/Interaction_Chase.cs" Line="1" Column="1" />
       <File FileName="Assets/SimplePath/Main/Code/AI/Components/ObstacleGridComponent.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimplePath/Examples/Code/Interaction_Touch.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Components/NavigationAgentComponent.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Components/PathAgentComponent.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Navigation/Pathing/PathPlanParams.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Navigation/INavTarget.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Components/PathManagerComponent.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Navigation/Pathing/PathRequest.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Navigation/Pathing/PathPlanner.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Planning/AStarPlanner.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Planning/Node.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Navigation/Pathing/IPathTerrain.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Navigation/Pathing/IPathAgent.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Navigation/Pathing/PathGrid.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Components/PathTerrainComponent.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Components/PathGridComponent.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/SolidityGrid.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Grid.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Utilities/TypeDefine.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Utilities/CameraHelper.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimplePath/Examples/Code/Interaction_Patrol.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Components/SteeringAgentComponent.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Pool.cs" Line="1" Column="1" />
       <File FileName="Assets/SimplePath/Main/Code/AI/Components/Custom/PathAgentComponent_Batch.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Unit/GameUnitObject.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Unit/Player.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Unit/Enemy.cs" Line="1" Column="1" />
-      <File FileName="Assets/Simple2d/Scripts/Enemy.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Manager/Explosion/BomberManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Manager/Explosion/ExplosionPool.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Manager/Explosion/BomberPool.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Utilities/PathHelper.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Manager/GameObjectPool.cs" Line="1" Column="1" />
-      <File FileName="Assets/SimplePath/Examples/Code/Interaction_Wander.cs" Line="16" Column="29" />
-      <File FileName="Assets/Scripts/Component/Wander.cs" Line="54" Column="36" />
-      <File FileName="Assets/SimplePath/Main/Code/AI/Components/Custom/NavigationAgentComponent_Batch.cs" Line="41" Column="2" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Components/Custom/SteeringAgentComponent2D.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Navigation/Steering/SteeringPath.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/BinaryHeap.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Components/Custom/PathManagerComponent_Batch.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Planning/Planner.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Navigation/Pathing/ISteeringAgen.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Components/Custom/NavigationAgentComponent_Batch.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Components/FootprintComponent.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimplePath/Examples/Code/Interaction_Wander.cs" Line="1" Column="1" />
+      <File FileName="Assets/SimplePath/Main/Code/AI/Components/TileMapComponent.cs" Line="1" Column="1" />
+      <File FileName="Assets/CBX Game/CBX.Unity.Editors/Editor/TileMapping/TileMapEditor.cs" Line="1" Column="1" />
+      <File FileName="Assets/CBX Game/CBX.TileMapping/Unity/TileMap.cs" Line="1" Column="1" />
+      <File FileName="Assets/Simple2d/Scripts/PlayerControl.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="D:\GitHub\U3DProject\FunBomb\Assets\SimplePath\Main\Code\AI\Navigation\Steering\SteeringPath.cs" line="246" />
+      <Breakpoint file="/Users/liboxiang/Documents/UnityProject/U3DProject/FunBomb/Assets/Scripts/Manager/GameObjectPool.cs" line="58" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="Assets\SimplePath\Main\Code\AI\Components\PathAgentComponent.cs" line="82" offsetX="414" offsetY="1134" expression="pathPlanParams" liveUpdate="False" />
+    <Watch file="Assets\SimplePath\Examples\Code\Interaction_Touch.cs" line="8" offsetX="437" offsetY="119" expression="screenpos" liveUpdate="False" />
+    <Watch file="Assets\SimplePath\Examples\Code\Interaction_Touch.cs" line="50" offsetX="749" offsetY="833" expression="swipeVecList" liveUpdate="False" />
+    <Watch file="Assets\SimplePath\Examples\Code\Interaction_Touch.cs" line="50" offsetX="373" offsetY="833" expression="start" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
 </Properties>
