@@ -14,8 +14,7 @@ public class ExplosionPool : GameObjectPool
 	
 	public static void PurgeInstance()
 	{
-		//_instance = null;
-		_instance = new ExplosionPool();
+		_instance = null;
 	}
 
 	public override void Init(string gameObjectPath){

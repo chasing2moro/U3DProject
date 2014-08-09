@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AnimationCallBackFunction : MonoBehaviour {
+public class ExplosionCallBack : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -14,7 +14,13 @@ public class AnimationCallBackFunction : MonoBehaviour {
 	}
 
 	public void ReturnToPool(){
-		Debug.Log("AnimationCallBackFunction ReturnToPool()");
+		Debug.Log("ReturnToPool()");
+		this.gameObject.transform.position = CommonHelper.HidenPos3D;
 		ExplosionPool.Instance.EnqueueToPool(this.gameObject);
+	}
+
+	//
+	public void ReturnBomberToPool(){
+
 	}
 }
